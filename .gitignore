@@ -1,0 +1,17 @@
+# Upstream repositories cloned for the audit.
+/Maple/
+/OpenSecret-SDK/
+/maple-proxy/
+/maple-proxy-startos/
+/nitro-toolkit/
+/opensecret/
+
+# Local helper/build state.
+/attestation-check/
+/.pgdata/
+
+# Nix build result symlinks.
+/result*
+
+# Platform/editor noise.
+.DS_Store
