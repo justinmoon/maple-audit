@@ -5,14 +5,19 @@
 /maple-proxy-startos/
 /nitro-toolkit/
 /opensecret/
+/sources/
 
 # Local helper/build state.
 /attestation-check/
 /.pgdata/
 /work/
+/tmp/
+providers/*/work/
+providers/*/node_modules/
 
 # Nix build result symlinks.
 /result*
+providers/*/result*
 
 # Platform/editor noise.
 .DS_Store

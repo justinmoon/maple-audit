@@ -12,7 +12,7 @@ EXTRA_NIX_ARGS="${EXTRA_NIX_ARGS:-}"
 
 usage() {
   cat <<'EOF'
-Usage: scripts/reproduce-build.sh
+Usage: providers/maple/scripts/reproduce-build.sh
 
 Clones the pinned OpenSecret repo, applies the source-build patch from this
 audit, then builds the source-derived production EIF:

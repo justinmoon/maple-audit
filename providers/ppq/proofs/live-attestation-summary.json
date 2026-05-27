@@ -1,0 +1,419 @@
+{
+  "checkedAt": "2026-05-27T14:34:32.405Z",
+  "attestationUrl": "https://api.ppq.ai/private/attestation",
+  "configRepo": "tinfoilsh/confidential-model-router",
+  "verified": true,
+  "verificationSteps": {
+    "fetchDigest": {
+      "status": "success"
+    },
+    "verifyCode": {
+      "status": "success"
+    },
+    "verifyEnclave": {
+      "status": "success"
+    },
+    "compareMeasurements": {
+      "status": "success"
+    },
+    "verifyCertificate": {
+      "status": "success"
+    }
+  },
+  "live": {
+    "domain": "inference.tinfoil.sh",
+    "releaseDigest": "ebb921d8572bc8f6b4e04812a7e65bffcf6ac1a2fabe8a55115a13d61e901b85",
+    "codeFingerprint": "b126c633a662ee13b77c8ff21cb29b9ac2da92674d290298a52b259fc74f6e9ed4691ffb240587834777a52d24e19f69",
+    "enclaveFingerprint": "b126c633a662ee13b77c8ff21cb29b9ac2da92674d290298a52b259fc74f6e9ed4691ffb240587834777a52d24e19f69",
+    "measurement": {
+      "type": "https://tinfoil.sh/predicate/sev-snp-guest/v2",
+      "registers": [
+        "b126c633a662ee13b77c8ff21cb29b9ac2da92674d290298a52b259fc74f6e9ed4691ffb240587834777a52d24e19f69"
+      ]
+    }
+  },
+  "sigstore": {
+    "subject": [
+      {
+        "name": "tinfoil-deployment.json",
+        "digest": {
+          "sha256": "ebb921d8572bc8f6b4e04812a7e65bffcf6ac1a2fabe8a55115a13d61e901b85"
+        }
+      }
+    ],
+    "predicateType": "https://tinfoil.sh/predicate/snp-tdx-multiplatform/v1",
+    "certificate": {
+      "issuer": "O=sigstore.dev\nCN=sigstore-intermediate",
+      "subjectAltName": "URI:https://github.com/tinfoilsh/confidential-model-router/.github/workflows/tinfoil-release-publish.yml@refs/tags/v0.0.104",
+      "validFrom": "May 24 19:40:42 2026 GMT",
+      "validTo": "May 24 19:50:42 2026 GMT",
+      "fingerprint256": "FB:31:5B:15:81:17:F5:30:A1:91:4C:F7:C3:99:13:7C:27:C3:3C:69:1A:7C:62:1D:1B:9F:CC:FB:3A:91:A3:5A"
+    },
+    "releaseTag": "v0.0.104",
+    "integratedTime": "2026-05-24T19:40:42.000Z"
+  },
+  "deployment": {
+    "image": "ghcr.io/tinfoilsh/confidential-model-router@sha256:3c8fb768331fd298e3bdc44a441c5ec8261a749aaf330c8628dc5df3232d0287",
+    "cmdline": "readonly=on pci=realloc,nocrs modprobe.blacklist=nouveau nouveau.modeset=0 root=/dev/mapper/root roothash=5c1f3121fb34dbf8b55d35abbd328daaab589f1e2566bc6c99afdc231d705f59 tinfoil-config-hash=2a604d3cc60929cfc7904b8758b4363c90bd4e15dc2948c7a8f78b1a5e65c4db",
+    "hashes": {
+      "version": "v0.7.5",
+      "root": "5c1f3121fb34dbf8b55d35abbd328daaab589f1e2566bc6c99afdc231d705f59",
+      "initrd": "1bb89997c15dd48e67b79431079505262da64df0cad11c12f0994fac8d61bd97",
+      "kernel": "39cc3d97d415d99523754af0203f3951fa3bfdace5f3387926ccf2a7fd4fc8f0",
+      "raw": "684b5b68b43495f0a4aef1db8bbd79fcd9040852444329c560951455cd55b181",
+      "built_at": "2026-04-03T16:16:04Z"
+    },
+    "config": "cvm-version: 0.7.5\nmemory: 16384\ncpus: 8\n\ncontainers:\n  - name: \"proxy\"\n    image: \"ghcr.io/tinfoilsh/confidential-model-router@sha256:3c8fb768331fd298e3bdc44a441c5ec8261a749aaf330c8628dc5df3232d0287\" # v0.0.104\n    restart: always\n    env:\n      - DOMAIN\n      - REFRESH_INTERVAL: \"1m\"\n      - USAGE_REPORTER_ID: \"model-router\"\n      - CONTROL_PLANE_URL: \"https://api.tinfoil.sh\"\n    secrets:\n      - USAGE_REPORTER_SECRET\n      - USAGE_CONTEXT_SECRET\n    healthcheck:\n      test: [\"CMD\", \"wget\", \"-q\", \"--spider\", \"http://localhost:8089/health\"]\n      interval: 30s\n      timeout: 5s\n      start_period: 5m\n\nshim:\n  upstream-port: 8089\n  tls-wildcard: true\n"
+  },
+  "routerStatus": {
+    "version": "v0.0.104",
+    "updated": "2026-05-27T14:32:58.961713053Z",
+    "errors": [],
+    "models": {
+      "code-execution": {
+        "repo": "tinfoilsh/confidential-code-execution",
+        "tag": "v0.0.6",
+        "measurement": {
+          "type": "https://tinfoil.sh/predicate/snp-tdx-multiplatform/v1",
+          "registers": [
+            "74249b621682b604ccebee0a5d5821b8bb65d1c3a192a9b41956a2d7b2cd0f5bb7e96731dc7672e088ec1c1c1253087b",
+            "4f7be53273f4ed3114e7578574f98eec533d5a18484e4e8a5feef1672b4a94e17646e7ab9e1f3c722faea496bac4dc8d",
+            "7790eec3c3bf9824e75a0edc798b854d5556c0f6a17dd230e9fc9a7a42373cfc8bb0c17681a9e559e166c96aa7ce4660"
+          ]
+        },
+        "enclaves": [
+          "code-execution.tinfoil.sh"
+        ]
+      },
+      "deepseek-v4-pro": {
+        "repo": "tinfoilsh/confidential-deepseek-v4-pro",
+        "tag": "v0.0.5",
+        "measurement": {
+          "type": "https://tinfoil.sh/predicate/snp-tdx-multiplatform/v1",
+          "registers": [
+            "401ef8c530fc7222a5bfafc98f981a622aa50d4a9a27ff61ba4a6acf6342d708e8a8f88feb65bf8b3da45d0a74050a3e",
+            "4f7be53273f4ed3114e7578574f98eec533d5a18484e4e8a5feef1672b4a94e17646e7ab9e1f3c722faea496bac4dc8d",
+            "0ba4289eb1298ae577337ce8d9c0ac90366f2fbfc9f626650ffa8244bbfcd0abbca9b738e629da87137441ef6323f9bc"
+          ]
+        },
+        "enclaves": [
+          "deepseek-v4-pro-inf12.tinfoil.containers.tinfoil.dev"
+        ]
+      },
+      "doc-upload": {
+        "repo": "tinfoilsh/confidential-doc-upload",
+        "tag": "v0.0.31",
+        "measurement": {
+          "type": "https://tinfoil.sh/predicate/snp-tdx-multiplatform/v1",
+          "registers": [
+            "07cd04fde5788b8517ed800256e5224241b78bf21c80c81bb40e9081c9642487dc6417f4f754e179107eee0065f4f054",
+            "4f7be53273f4ed3114e7578574f98eec533d5a18484e4e8a5feef1672b4a94e17646e7ab9e1f3c722faea496bac4dc8d",
+            "44380d0a0029ee6e59512ad15146e5e575332a0715ad9719395d90c1a12ce53b1b79ca3b6f9e1ba5c20c6173e9ef8197"
+          ]
+        },
+        "enclaves": [
+          "doc-upload.tinfoil.containers.tinfoil.dev"
+        ]
+      },
+      "gemma4-31b": {
+        "repo": "tinfoilsh/confidential-gemma4-31b",
+        "tag": "v0.0.12",
+        "measurement": {
+          "type": "https://tinfoil.sh/predicate/snp-tdx-multiplatform/v1",
+          "registers": [
+            "072cb4d53fc275d0eddc4246fd8579de1e8fcdf74939d26189e22452319b1cfc710d4243822c64292504a98fc08ca81a",
+            "4f7be53273f4ed3114e7578574f98eec533d5a18484e4e8a5feef1672b4a94e17646e7ab9e1f3c722faea496bac4dc8d",
+            "a6e7a73822a3c081ca102a98f01ec28005a799158121eb72e52201d72d23baee57b0eeb82778f2f01033f19f627c51f5"
+          ]
+        },
+        "enclaves": [
+          "gemma4-31b-1.inf10.tinfoil.sh",
+          "gemma4-31b-inf6.tinfoil.containers.tinfoil.dev"
+        ]
+      },
+      "glm-5-1": {
+        "repo": "tinfoilsh/confidential-glm5-1",
+        "tag": "v0.0.7",
+        "measurement": {
+          "type": "https://tinfoil.sh/predicate/snp-tdx-multiplatform/v1",
+          "registers": [
+            "c0f85c799742a7907a7a93781eb91fcbb56040abff767b760671f93946fbc7cbf8cefd8144712d55e84e55650635ec87",
+            "4f7be53273f4ed3114e7578574f98eec533d5a18484e4e8a5feef1672b4a94e17646e7ab9e1f3c722faea496bac4dc8d",
+            "8acb25172524dbc0f1b06dfae702801fdcd24fc3ed3e0c9bc0c27b8f4d40491324e07d7acc4088787bf886f7a3071641"
+          ]
+        },
+        "enclaves": [
+          "glm-5-1.tinfoil.containers.tinfoil.dev"
+        ]
+      },
+      "gpt-oss-120b": {
+        "repo": "tinfoilsh/confidential-gpt-oss-120b",
+        "tag": "v0.0.22",
+        "measurement": {
+          "type": "https://tinfoil.sh/predicate/snp-tdx-multiplatform/v1",
+          "registers": [
+            "def59672e45a61a9cbc9744e57d4bc8f6168496a7d40f205ebfd03a3ae201a559ada3a85bf6b0373a24f50de3b67bf38",
+            "727f33421ba6f289eb5e2d4e27391cc8b0fcda181879dba38d87ce789dfad11927380ff32d016b6b7bc8733179b10753",
+            "69d9cb675fe32928dd881132cc3e17fb8bb41c475541ccc8b65ccac6b5dc4285ca93a2fe21635ef06dfd5f64c66dbc2e"
+          ]
+        },
+        "enclaves": [
+          "gpt-oss-120b-0.inf6.tinfoil.sh",
+          "gpt-oss-120b-1.inf10.tinfoil.sh",
+          "gpt-oss-120b-1.inf6.tinfoil.sh"
+        ]
+      },
+      "gpt-oss-safeguard-120b": {
+        "repo": "tinfoilsh/confidential-gpt-oss-safeguard-120b",
+        "tag": "v0.0.7",
+        "measurement": {
+          "type": "https://tinfoil.sh/predicate/snp-tdx-multiplatform/v1",
+          "registers": [
+            "c4a0c661ac56e4d9cc92b9b811ede8349dbf5fc8ec9b718e99018afa3f8a76d6f840d7a5bde0b9181cb8b46c301de828",
+            "727f33421ba6f289eb5e2d4e27391cc8b0fcda181879dba38d87ce789dfad11927380ff32d016b6b7bc8733179b10753",
+            "8341c824f1fed7b51dc2c5fe40b9e7234a6e0fd3e5ff7efd5dfdaca72799690f2f5adf8e4571060c5f8ca38c3c87c0ff"
+          ]
+        },
+        "enclaves": [
+          "gpt-oss-safeguard-120b.tinfoil.containers.tinfoil.dev"
+        ]
+      },
+      "kimi-k2-6": {
+        "repo": "tinfoilsh/confidential-kimi-k2-6-b200",
+        "tag": "v0.0.1",
+        "measurement": {
+          "type": "https://tinfoil.sh/predicate/snp-tdx-multiplatform/v1",
+          "registers": [
+            "d8859e75daaf944e0ca3332feaeecb19896f78eb362dc0f4db34fa04d1da4904cd783f592e4ad7660232601623d47f12",
+            "46fb4643cc8fa10476074c01168d4c4757127452096d046b0147b26f1903a72dd53345404125a31c9cac26965bf6119c",
+            "d869a109da88d1b18cefc0f46a4940d6ecfa20134c79ed3d75570cbdfb95271097b371a39cd0359c102040e5b1ae769f"
+          ]
+        },
+        "enclaves": [
+          "kimi-k2-6.inf13.tinfoil.sh"
+        ]
+      },
+      "llama3-3-70b": {
+        "repo": "tinfoilsh/confidential-llama3-3-70b",
+        "tag": "v0.0.24",
+        "measurement": {
+          "type": "https://tinfoil.sh/predicate/snp-tdx-multiplatform/v1",
+          "registers": [
+            "04fd2268b533a91469a5c22f1f787497661c78cc1af32c85d26129bf2b51b43bb810c0ec5e22bfa3f27b9d7cf580d575",
+            "727f33421ba6f289eb5e2d4e27391cc8b0fcda181879dba38d87ce789dfad11927380ff32d016b6b7bc8733179b10753",
+            "421b99e00861b6a172c69af83c716b36d9fb75d4f24f77d4282907d640ab588025e14d37826ad1fe15af0d9676fe0dba"
+          ]
+        },
+        "enclaves": [
+          "llama3-3-70b.tinfoil.containers.tinfoil.dev"
+        ]
+      },
+      "nomic-embed-text": {
+        "repo": "tinfoilsh/confidential-nomic-embed-text",
+        "tag": "v0.0.27",
+        "measurement": {
+          "type": "https://tinfoil.sh/predicate/snp-tdx-multiplatform/v1",
+          "registers": [
+            "4c86ee6cd084e9a60829581aba274af9dda200b10831edbcb9a362704637d4b40dc6293d73e589f0d15736078398fbd5",
+            "727f33421ba6f289eb5e2d4e27391cc8b0fcda181879dba38d87ce789dfad11927380ff32d016b6b7bc8733179b10753",
+            "3cc9ddc86bf972b0d2bccd8d1e793822ffdfcbefe02fe9364f64aec01928a72701c334769c72c4020aa82f77c0165525"
+          ]
+        },
+        "enclaves": [
+          "nomic.inf10.tinfoil.sh"
+        ]
+      },
+      "qwen3-tts": {
+        "repo": "tinfoilsh/confidential-realtime-models",
+        "tag": "v0.0.6",
+        "measurement": {
+          "type": "https://tinfoil.sh/predicate/snp-tdx-multiplatform/v1",
+          "registers": [
+            "0fc47bfeb6e552c7cae5e59f856ec909899c3209997438d582f4309c6c04e881668cf97f681832eb8ae534072499a110",
+            "4f7be53273f4ed3114e7578574f98eec533d5a18484e4e8a5feef1672b4a94e17646e7ab9e1f3c722faea496bac4dc8d",
+            "f5113eecd18822081a5cfc51d0e30705a0e719702457b030cf00d6e7f1219de44d4b2e455ba9fe3f1b87b24b9b1bc826"
+          ]
+        },
+        "enclaves": [
+          "qwen3-tts.realtime.inf10.tinfoil.sh"
+        ]
+      },
+      "qwen3-vl-30b": {
+        "repo": "tinfoilsh/confidential-qwen3-vl-30b",
+        "tag": "v0.0.16",
+        "measurement": {
+          "type": "https://tinfoil.sh/predicate/snp-tdx-multiplatform/v1",
+          "registers": [
+            "f5ef2a14ac2ab36138496243578b4dfaedb64cd7b497465c90dc8ed44f86f35d471e10ca8bec548826c483dc29fe610d",
+            "727f33421ba6f289eb5e2d4e27391cc8b0fcda181879dba38d87ce789dfad11927380ff32d016b6b7bc8733179b10753",
+            "254a69750e4a2888eb5e57ed7dfa2b1f6f06a9714de2a77b5955807630ea672f70ef953fd74be8b44215c6f6fad48150"
+          ]
+        },
+        "enclaves": [
+          "qwen3-vl-30b.inf10.tinfoil.sh"
+        ]
+      },
+      "voxtral-mini-4b-realtime": {
+        "repo": "tinfoilsh/confidential-realtime-models",
+        "tag": "v0.0.6",
+        "measurement": {
+          "type": "https://tinfoil.sh/predicate/snp-tdx-multiplatform/v1",
+          "registers": [
+            "0fc47bfeb6e552c7cae5e59f856ec909899c3209997438d582f4309c6c04e881668cf97f681832eb8ae534072499a110",
+            "4f7be53273f4ed3114e7578574f98eec533d5a18484e4e8a5feef1672b4a94e17646e7ab9e1f3c722faea496bac4dc8d",
+            "f5113eecd18822081a5cfc51d0e30705a0e719702457b030cf00d6e7f1219de44d4b2e455ba9fe3f1b87b24b9b1bc826"
+          ]
+        },
+        "enclaves": [
+          "voxtral-mini-4b-realtime.realtime.inf10.tinfoil.sh"
+        ]
+      },
+      "voxtral-small-24b": {
+        "repo": "tinfoilsh/confidential-voxtral-small-24b",
+        "tag": "v0.0.11",
+        "measurement": {
+          "type": "https://tinfoil.sh/predicate/snp-tdx-multiplatform/v1",
+          "registers": [
+            "d5584a904be958473644d184c8a5fe31e762213e3a24eaf259b681d2ed3ec3dead7370ba73a05b451cffcb1823793432",
+            "727f33421ba6f289eb5e2d4e27391cc8b0fcda181879dba38d87ce789dfad11927380ff32d016b6b7bc8733179b10753",
+            "f5f753fb28996aa91414a75009a3a36afa5ae18fb4dcc0e85c41a8032c59fe2d259d1c8ea6018a464d8877b756e8e24f"
+          ]
+        },
+        "enclaves": [
+          "voxtral-small-24b.inf10.tinfoil.sh"
+        ]
+      },
+      "voxtral-tts": {
+        "repo": "tinfoilsh/confidential-realtime-models",
+        "tag": "v0.0.6",
+        "measurement": {
+          "type": "https://tinfoil.sh/predicate/snp-tdx-multiplatform/v1",
+          "registers": [
+            "0fc47bfeb6e552c7cae5e59f856ec909899c3209997438d582f4309c6c04e881668cf97f681832eb8ae534072499a110",
+            "4f7be53273f4ed3114e7578574f98eec533d5a18484e4e8a5feef1672b4a94e17646e7ab9e1f3c722faea496bac4dc8d",
+            "f5113eecd18822081a5cfc51d0e30705a0e719702457b030cf00d6e7f1219de44d4b2e455ba9fe3f1b87b24b9b1bc826"
+          ]
+        },
+        "enclaves": [
+          "voxtral-tts.realtime.inf10.tinfoil.sh"
+        ]
+      },
+      "websearch": {
+        "repo": "tinfoilsh/confidential-websearch",
+        "tag": "v0.5.4",
+        "measurement": {
+          "type": "https://tinfoil.sh/predicate/snp-tdx-multiplatform/v1",
+          "registers": [
+            "13a05db0bbcf16dc60a0f574f1c85409f2761d20e964d55e480c9524bc3bb8606091c09081a3c9b4cbe708b4d0d57cb4",
+            "4f7be53273f4ed3114e7578574f98eec533d5a18484e4e8a5feef1672b4a94e17646e7ab9e1f3c722faea496bac4dc8d",
+            "5ff431ce6d7c17113d2858eef7cbbe501d04b73773001bef9408381c7560a1a3f7d368d06a832ce885ce5bf6d1e3f2ac"
+          ]
+        },
+        "enclaves": [
+          "websearch.tinfoil.sh"
+        ]
+      },
+      "whisper-large-v3-turbo": {
+        "repo": "tinfoilsh/confidential-realtime-models",
+        "tag": "v0.0.6",
+        "measurement": {
+          "type": "https://tinfoil.sh/predicate/snp-tdx-multiplatform/v1",
+          "registers": [
+            "0fc47bfeb6e552c7cae5e59f856ec909899c3209997438d582f4309c6c04e881668cf97f681832eb8ae534072499a110",
+            "4f7be53273f4ed3114e7578574f98eec533d5a18484e4e8a5feef1672b4a94e17646e7ab9e1f3c722faea496bac4dc8d",
+            "f5113eecd18822081a5cfc51d0e30705a0e719702457b030cf00d6e7f1219de44d4b2e455ba9fe3f1b87b24b9b1bc826"
+          ]
+        },
+        "enclaves": [
+          "whisper-large-v3-turbo.realtime.inf10.tinfoil.sh"
+        ]
+      }
+    }
+  },
+  "registry": {
+    "repository": "tinfoilsh/confidential-model-router",
+    "indexDigest": "sha256:3c8fb768331fd298e3bdc44a441c5ec8261a749aaf330c8628dc5df3232d0287",
+    "imageManifestDigest": "sha256:3de81dd9fbbc005bdd2fc1e2712892c575fae46cc5b88f7169b7253eeef09963",
+    "attestationManifestDigest": "sha256:d95dc8652f686b60c5003567e4cf073addd86d7c09a092e5f4872d8c9e57ecda",
+    "imageLabels": {
+      "org.opencontainers.image.created": "2026-05-24T19:39:21.847Z",
+      "org.opencontainers.image.description": "Tinfoil Orchestration Server",
+      "org.opencontainers.image.licenses": "AGPL-3.0",
+      "org.opencontainers.image.revision": "4ad5a7229fdd37f5d270b56a92dfb23a3fb2b562",
+      "org.opencontainers.image.source": "https://github.com/tinfoilsh/confidential-model-router",
+      "org.opencontainers.image.title": "confidential-model-router",
+      "org.opencontainers.image.url": "https://github.com/tinfoilsh/confidential-model-router",
+      "org.opencontainers.image.version": "0.0.104"
+    },
+    "slsa": {
+      "subject": [
+        {
+          "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-model-router@0.0.104?platform=linux%2Famd64",
+          "digest": {
+            "sha256": "3de81dd9fbbc005bdd2fc1e2712892c575fae46cc5b88f7169b7253eeef09963"
+          }
+        },
+        {
+          "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-model-router@0.0?platform=linux%2Famd64",
+          "digest": {
+            "sha256": "3de81dd9fbbc005bdd2fc1e2712892c575fae46cc5b88f7169b7253eeef09963"
+          }
+        },
+        {
+          "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-model-router@sha-4ad5a72?platform=linux%2Famd64",
+          "digest": {
+            "sha256": "3de81dd9fbbc005bdd2fc1e2712892c575fae46cc5b88f7169b7253eeef09963"
+          }
+        },
+        {
+          "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-model-router@latest?platform=linux%2Famd64",
+          "digest": {
+            "sha256": "3de81dd9fbbc005bdd2fc1e2712892c575fae46cc5b88f7169b7253eeef09963"
+          }
+        }
+      ],
+      "buildType": "https://github.com/moby/buildkit/blob/master/docs/attestations/slsa-definitions.md",
+      "resolvedDependencies": [
+        {
+          "uri": "pkg:docker/alpine@latest?platform=linux%2Famd64",
+          "digest": {
+            "sha256": "5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11"
+          }
+        },
+        {
+          "uri": "pkg:docker/golang@1.25-alpine?platform=linux%2Famd64",
+          "digest": {
+            "sha256": "8d22e29d960bc50cd025d93d5b7c7d220b1ee9aa7a239b3c8f55a57e987e8d45"
+          }
+        }
+      ],
+      "buildArgs": {
+        "build-arg:SOURCE_DATE_EPOCH": "0",
+        "build-arg:VERSION": "v0.0.104",
+        "label:org.opencontainers.image.created": "2026-05-24T19:39:21.847Z",
+        "label:org.opencontainers.image.description": "Tinfoil Orchestration Server",
+        "label:org.opencontainers.image.licenses": "AGPL-3.0",
+        "label:org.opencontainers.image.revision": "4ad5a7229fdd37f5d270b56a92dfb23a3fb2b562",
+        "label:org.opencontainers.image.source": "https://github.com/tinfoilsh/confidential-model-router",
+        "label:org.opencontainers.image.title": "confidential-model-router",
+        "label:org.opencontainers.image.url": "https://github.com/tinfoilsh/confidential-model-router",
+        "label:org.opencontainers.image.version": "0.0.104"
+      },
+      "vcs": {
+        "localdir:context": ".",
+        "localdir:dockerfile": ".",
+        "revision": "4ad5a7229fdd37f5d270b56a92dfb23a3fb2b562",
+        "source": "https://github.com/tinfoilsh/confidential-model-router"
+      },
+      "builder": {
+        "id": "https://github.com/tinfoilsh/confidential-model-router/actions/runs/26370856087/attempts/1"
+      },
+      "startedOn": "2026-05-24T19:39:22.645496206Z",
+      "finishedOn": "2026-05-24T19:39:57.281932955Z",
+      "buildkitCompleteness": {
+        "request": true,
+        "resolvedDependencies": false
+      }
+    }
+  }
+}

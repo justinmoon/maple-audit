@@ -1,0 +1,14 @@
+{
+  "name": "ppq-tee-audit",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "verify": "node scripts/verify-live-attestation.mjs"
+  },
+  "dependencies": {
+    "@tinfoilsh/verifier": "1.1.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
