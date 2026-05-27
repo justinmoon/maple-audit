@@ -40,12 +40,14 @@ Bottom line: PPQ/Tinfoil gives a live cryptographic proof of the deployed enclav
 ## Reproduce
 
 ```sh
-cd providers/ppq
+cd ppq
 npm ci
 npm run verify -- --out proofs/live-attestation-summary.json
+scripts/rebuild-router-container.sh
+npm run audit:tinfoil -- --out proofs/tinfoil-chain-summary.json
 ```
 
-The script:
+The verification script:
 
 - fetches the live PPQ attestation bundle;
 - verifies the SEV-SNP attestation, Sigstore release provenance, measurement equality, and enclave certificate with `@tinfoilsh/verifier`;
@@ -53,6 +55,8 @@ The script:
 - fetches router status from the verified Tinfoil host;
 - queries GHCR anonymously for the pinned router image manifest and attached SLSA provenance.
 
-No Docker command is used.
+The router rebuild script uses Docker with a temporary Docker config so it does not read macOS keychain credentials.
 
 Current captured output: [`proofs/live-attestation-summary.json`](proofs/live-attestation-summary.json).
+
+Tinfoil chain details: [`TINFOIL_CHAIN_AUDIT.md`](TINFOIL_CHAIN_AUDIT.md).

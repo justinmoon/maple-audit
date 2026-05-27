@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-05-27T15:45:10Z",
+  "sourceRepo": "https://github.com/tinfoilsh/confidential-model-router.git",
+  "sourceCommit": "4ad5a7229fdd37f5d270b56a92dfb23a3fb2b562",
+  "releaseTag": "v0.0.104",
+  "expectedIndexDigest": "sha256:3c8fb768331fd298e3bdc44a441c5ec8261a749aaf330c8628dc5df3232d0287",
+  "expectedImageManifestDigest": "sha256:3de81dd9fbbc005bdd2fc1e2712892c575fae46cc5b88f7169b7253eeef09963",
+  "expectedAppLayerDigest": "sha256:f0a014da990e98236b4deeeec59c25b67f99b88be16ccbf82bb53be4be3b934c",
+  "localImageManifestDigest": "sha256:9f4836532c11903528733d5935815a44950f7776d5f44bcb87d18a069c2d2d7f",
+  "localConfigDigest": "sha256:efdeaa3c80eef66c939873c01aee2faa524baf3712b8b23d5262b195c1752f1f",
+  "localLayerDigests": ["sha256:6a0ac1617861a677b045b7ff88545213ec31c0ff08763195a70a4a5adda577bb","sha256:b67246d5d21a1e5208d87db10a035e60592ce32fc1bd322536cd6248ad3f3ea1","sha256:4c99e6d27e851980d442a435da92e8791e0d1f3a385518f6b04606a17f89d515"],
+  "localProxySha256": "4319a7932dd64e8421d22a312ceba38c08dd1f7556a58cf15a3203953e976b3e",
+  "liveProxySha256": "4319a7932dd64e8421d22a312ceba38c08dd1f7556a58cf15a3203953e976b3e",
+  "matchedExpectedImageManifest": false,
+  "matchedProxyBinary": true,
+  "classification": "SOURCE-BINARY-REPRO",
+  "notes": "Built with patched base image digests from the live SLSA provenance and labels matching the GitHub release build. The live index digest also contains an attestation manifest; this comparison targets the actual linux/amd64 image manifest. In this run the rebuilt proxy binary matched the live proxy binary, but the image manifest did not because the application layer tar metadata timestamps differed from the release build."
+}

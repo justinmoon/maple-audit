@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "verify": "node scripts/verify-live-attestation.mjs"
+    "verify": "node scripts/verify-live-attestation.mjs",
+    "audit:tinfoil": "node scripts/audit-tinfoil-chain.mjs"
   },
   "dependencies": {
     "@tinfoilsh/verifier": "1.1.3"

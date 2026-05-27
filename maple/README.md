@@ -31,7 +31,7 @@ Prerequisites:
 Run the one-command source-derived build:
 
 ```sh
-providers/maple/scripts/reproduce-build.sh
+maple/scripts/reproduce-build.sh
 ```
 
 The script clones the pinned OpenSecret commit, initializes submodules, applies [`patches/opensecret-source-build.patch`](patches/opensecret-source-build.patch), and builds:

@@ -1,0 +1,1012 @@
+{
+  "checkedAt": "2026-05-27T15:45:50.760Z",
+  "sourceSummary": "proofs/live-attestation-summary.json",
+  "classifications": {
+    "SOURCE-REPRO": "rebuilt from source and matched the live hash",
+    "SOURCE-BINARY-REPRO": "rebuilt the main executable from source, but container metadata/layer hash did not match",
+    "BINARY-PROVENANCE": "signed/pinned artifact with provenance, not source-rebuilt here",
+    "HASH-ONLY": "pinned digest/ref but no source rebuild/provenance verified here",
+    "MODEL-HASH": "model weights accepted by immutable repo/ref, not rebuildable as source",
+    "OPAQUE": "no useful public identity found",
+    "BROKEN": "claimed source recipe was tried and did not reproduce"
+  },
+  "router": {
+    "repo": "tinfoilsh/confidential-model-router",
+    "tag": "v0.0.104",
+    "releaseUrl": "https://github.com/tinfoilsh/confidential-model-router/releases/tag/v0.0.104",
+    "releaseDigest": "ebb921d8572bc8f6b4e04812a7e65bffcf6ac1a2fabe8a55115a13d61e901b85",
+    "releaseAttestationCount": 1,
+    "sourceCommitFromImageProvenance": "4ad5a7229fdd37f5d270b56a92dfb23a3fb2b562",
+    "image": "ghcr.io/tinfoilsh/confidential-model-router@sha256:3c8fb768331fd298e3bdc44a441c5ec8261a749aaf330c8628dc5df3232d0287",
+    "imageManifestDigest": "sha256:3de81dd9fbbc005bdd2fc1e2712892c575fae46cc5b88f7169b7253eeef09963",
+    "build": {
+      "id": "https://github.com/tinfoilsh/confidential-model-router/actions/runs/26370856087/attempts/1"
+    },
+    "sourceRebuild": {
+      "checkedAt": "2026-05-27T15:45:10Z",
+      "sourceRepo": "https://github.com/tinfoilsh/confidential-model-router.git",
+      "sourceCommit": "4ad5a7229fdd37f5d270b56a92dfb23a3fb2b562",
+      "releaseTag": "v0.0.104",
+      "expectedIndexDigest": "sha256:3c8fb768331fd298e3bdc44a441c5ec8261a749aaf330c8628dc5df3232d0287",
+      "expectedImageManifestDigest": "sha256:3de81dd9fbbc005bdd2fc1e2712892c575fae46cc5b88f7169b7253eeef09963",
+      "expectedAppLayerDigest": "sha256:f0a014da990e98236b4deeeec59c25b67f99b88be16ccbf82bb53be4be3b934c",
+      "localImageManifestDigest": "sha256:9f4836532c11903528733d5935815a44950f7776d5f44bcb87d18a069c2d2d7f",
+      "localConfigDigest": "sha256:efdeaa3c80eef66c939873c01aee2faa524baf3712b8b23d5262b195c1752f1f",
+      "localLayerDigests": [
+        "sha256:6a0ac1617861a677b045b7ff88545213ec31c0ff08763195a70a4a5adda577bb",
+        "sha256:b67246d5d21a1e5208d87db10a035e60592ce32fc1bd322536cd6248ad3f3ea1",
+        "sha256:4c99e6d27e851980d442a435da92e8791e0d1f3a385518f6b04606a17f89d515"
+      ],
+      "localProxySha256": "4319a7932dd64e8421d22a312ceba38c08dd1f7556a58cf15a3203953e976b3e",
+      "liveProxySha256": "4319a7932dd64e8421d22a312ceba38c08dd1f7556a58cf15a3203953e976b3e",
+      "matchedExpectedImageManifest": false,
+      "matchedProxyBinary": true,
+      "classification": "SOURCE-BINARY-REPRO",
+      "notes": "Built with patched base image digests from the live SLSA provenance and labels matching the GitHub release build. The live index digest also contains an attestation manifest; this comparison targets the actual linux/amd64 image manifest. In this run the rebuilt proxy binary matched the live proxy binary, but the image manifest did not because the application layer tar metadata timestamps differed from the release build."
+    },
+    "classification": "SOURCE-BINARY-REPRO"
+  },
+  "cvm": {
+    "repo": "tinfoilsh/cvmimage",
+    "tag": "v0.7.5",
+    "releaseUrl": "https://github.com/tinfoilsh/cvmimage/releases/tag/v0.7.5",
+    "manifestAsset": {
+      "name": "tinfoil-inference-v0.7.5-manifest.json",
+      "digest": "sha256:e97ae94ade461d65ebeec58a4fcfd23b004e9109919e40c26040de4d9ebd4cb1",
+      "size": 379,
+      "url": "https://github.com/tinfoilsh/cvmimage/releases/download/v0.7.5/tinfoil-inference-v0.7.5-manifest.json"
+    },
+    "releaseAttestationCount": 1,
+    "classification": "BINARY-PROVENANCE",
+    "manifest": {
+      "version": "v0.7.5",
+      "root": "5c1f3121fb34dbf8b55d35abbd328daaab589f1e2566bc6c99afdc231d705f59",
+      "initrd": "1bb89997c15dd48e67b79431079505262da64df0cad11c12f0994fac8d61bd97",
+      "kernel": "39cc3d97d415d99523754af0203f3951fa3bfdace5f3387926ccf2a7fd4fc8f0",
+      "raw": "684b5b68b43495f0a4aef1db8bbd79fcd9040852444329c560951455cd55b181",
+      "built_at": "2026-04-03T16:16:04Z"
+    }
+  },
+  "downstreamModelReleases": [
+    {
+      "repo": "tinfoilsh/confidential-code-execution",
+      "tag": "v0.0.6",
+      "releaseUrl": "https://github.com/tinfoilsh/confidential-code-execution/releases/tag/v0.0.6",
+      "releaseDigest": "2bdafcad4d5be209d06f1b5db2aca96be9705d36506cfdaec9d8f1d510e68605",
+      "releaseAttestationCount": 1,
+      "classification": "BINARY-PROVENANCE",
+      "measurement": {
+        "snp": "74249b621682b604ccebee0a5d5821b8bb65d1c3a192a9b41956a2d7b2cd0f5bb7e96731dc7672e088ec1c1c1253087b",
+        "tdx": {
+          "rtmr1": "4f7be53273f4ed3114e7578574f98eec533d5a18484e4e8a5feef1672b4a94e17646e7ab9e1f3c722faea496bac4dc8d",
+          "rtmr2": "7790eec3c3bf9824e75a0edc798b854d5556c0f6a17dd230e9fc9a7a42373cfc8bb0c17681a9e559e166c96aa7ce4660"
+        },
+        "hashes": {
+          "version": "v0.7.5",
+          "root": "5c1f3121fb34dbf8b55d35abbd328daaab589f1e2566bc6c99afdc231d705f59",
+          "initrd": "1bb89997c15dd48e67b79431079505262da64df0cad11c12f0994fac8d61bd97",
+          "kernel": "39cc3d97d415d99523754af0203f3951fa3bfdace5f3387926ccf2a7fd4fc8f0",
+          "raw": "684b5b68b43495f0a4aef1db8bbd79fcd9040852444329c560951455cd55b181",
+          "built_at": "2026-04-03T16:16:04Z"
+        }
+      },
+      "cvmVersion": "v0.7.5",
+      "containerImages": [
+        {
+          "image": "ghcr.io/tinfoilsh/confidential-code-execution@sha256:a3215185a5f3470356d6b183290baa10a151968e732064463363edab3af9028b",
+          "classification": "BINARY-PROVENANCE"
+        }
+      ],
+      "modelRefs": []
+    },
+    {
+      "repo": "tinfoilsh/confidential-deepseek-v4-pro",
+      "tag": "v0.0.5",
+      "releaseUrl": "https://github.com/tinfoilsh/confidential-deepseek-v4-pro/releases/tag/v0.0.5",
+      "releaseDigest": "5628631d8dfe0e6e9bf410a9ddc33f3e973e3e641c99668ead3d1749db4e0167",
+      "releaseAttestationCount": 1,
+      "classification": "BINARY-PROVENANCE",
+      "measurement": {
+        "snp": "401ef8c530fc7222a5bfafc98f981a622aa50d4a9a27ff61ba4a6acf6342d708e8a8f88feb65bf8b3da45d0a74050a3e",
+        "tdx": {
+          "rtmr1": "4f7be53273f4ed3114e7578574f98eec533d5a18484e4e8a5feef1672b4a94e17646e7ab9e1f3c722faea496bac4dc8d",
+          "rtmr2": "0ba4289eb1298ae577337ce8d9c0ac90366f2fbfc9f626650ffa8244bbfcd0abbca9b738e629da87137441ef6323f9bc"
+        },
+        "hashes": {
+          "version": "v0.7.5",
+          "root": "5c1f3121fb34dbf8b55d35abbd328daaab589f1e2566bc6c99afdc231d705f59",
+          "initrd": "1bb89997c15dd48e67b79431079505262da64df0cad11c12f0994fac8d61bd97",
+          "kernel": "39cc3d97d415d99523754af0203f3951fa3bfdace5f3387926ccf2a7fd4fc8f0",
+          "raw": "684b5b68b43495f0a4aef1db8bbd79fcd9040852444329c560951455cd55b181",
+          "built_at": "2026-04-03T16:16:04Z"
+        }
+      },
+      "cvmVersion": "v0.7.5",
+      "containerImages": [
+        {
+          "image": "vllm/vllm-openai:v0.20.0-cu130-ubuntu2404@sha256:aff65d7198dd284c37dd0a18a606544cc5e92bfb0d5eb608b77e8b8f1c6b8b0d",
+          "classification": "HASH-ONLY"
+        }
+      ],
+      "modelRefs": [
+        {
+          "ref": "deepseek-ai/DeepSeek-V4-Pro@45040942eb0d1c4e29fa6b92a6195f110e9e7444",
+          "classification": "MODEL-HASH"
+        }
+      ]
+    },
+    {
+      "repo": "tinfoilsh/confidential-doc-upload",
+      "tag": "v0.0.31",
+      "releaseUrl": "https://github.com/tinfoilsh/confidential-doc-upload/releases/tag/v0.0.31",
+      "releaseDigest": "c7b56299d707dda1f9f6e8b75f09b8092aae097d3bca6281e962c64b5f534419",
+      "releaseAttestationCount": 1,
+      "classification": "BINARY-PROVENANCE",
+      "measurement": {
+        "snp": "07cd04fde5788b8517ed800256e5224241b78bf21c80c81bb40e9081c9642487dc6417f4f754e179107eee0065f4f054",
+        "tdx": {
+          "rtmr1": "4f7be53273f4ed3114e7578574f98eec533d5a18484e4e8a5feef1672b4a94e17646e7ab9e1f3c722faea496bac4dc8d",
+          "rtmr2": "44380d0a0029ee6e59512ad15146e5e575332a0715ad9719395d90c1a12ce53b1b79ca3b6f9e1ba5c20c6173e9ef8197"
+        },
+        "hashes": {
+          "version": "v0.7.5",
+          "root": "5c1f3121fb34dbf8b55d35abbd328daaab589f1e2566bc6c99afdc231d705f59",
+          "initrd": "1bb89997c15dd48e67b79431079505262da64df0cad11c12f0994fac8d61bd97",
+          "kernel": "39cc3d97d415d99523754af0203f3951fa3bfdace5f3387926ccf2a7fd4fc8f0",
+          "raw": "684b5b68b43495f0a4aef1db8bbd79fcd9040852444329c560951455cd55b181",
+          "built_at": "2026-04-03T16:16:04Z"
+        }
+      },
+      "cvmVersion": "v0.7.5",
+      "containerImages": [
+        {
+          "image": "ghcr.io/tinfoilsh/confidential-doc-upload@sha256:f24f8f6df00c608e360be0ed73b14a0d3369015294972489caa18e4a1be2f4aa",
+          "classification": "BINARY-PROVENANCE"
+        }
+      ],
+      "modelRefs": []
+    },
+    {
+      "repo": "tinfoilsh/confidential-gemma4-31b",
+      "tag": "v0.0.12",
+      "releaseUrl": "https://github.com/tinfoilsh/confidential-gemma4-31b/releases/tag/v0.0.12",
+      "releaseDigest": "1f6644ab6bacc7c75107e06ad16ca59a6d7f0bc8944246b27add7ec8d1274756",
+      "releaseAttestationCount": 1,
+      "classification": "BINARY-PROVENANCE",
+      "measurement": {
+        "snp": "072cb4d53fc275d0eddc4246fd8579de1e8fcdf74939d26189e22452319b1cfc710d4243822c64292504a98fc08ca81a",
+        "tdx": {
+          "rtmr1": "4f7be53273f4ed3114e7578574f98eec533d5a18484e4e8a5feef1672b4a94e17646e7ab9e1f3c722faea496bac4dc8d",
+          "rtmr2": "a6e7a73822a3c081ca102a98f01ec28005a799158121eb72e52201d72d23baee57b0eeb82778f2f01033f19f627c51f5"
+        },
+        "hashes": {
+          "version": "v0.7.5",
+          "root": "5c1f3121fb34dbf8b55d35abbd328daaab589f1e2566bc6c99afdc231d705f59",
+          "initrd": "1bb89997c15dd48e67b79431079505262da64df0cad11c12f0994fac8d61bd97",
+          "kernel": "39cc3d97d415d99523754af0203f3951fa3bfdace5f3387926ccf2a7fd4fc8f0",
+          "raw": "684b5b68b43495f0a4aef1db8bbd79fcd9040852444329c560951455cd55b181",
+          "built_at": "2026-04-03T16:16:04Z"
+        }
+      },
+      "cvmVersion": "v0.7.5",
+      "containerImages": [
+        {
+          "image": "ghcr.io/tinfoilsh/confidential-gemma4-31b@sha256:1e1938cc35ae260ab912db80798d95ebd16fdfb0a18b7708ded53e3bcf8fea76",
+          "classification": "BINARY-PROVENANCE"
+        }
+      ],
+      "modelRefs": [
+        {
+          "ref": "google/gemma-4-31B-it@439edf5652646a0d1bd8b46bfdc1d3645761a445",
+          "classification": "MODEL-HASH"
+        }
+      ]
+    },
+    {
+      "repo": "tinfoilsh/confidential-glm5-1",
+      "tag": "v0.0.7",
+      "releaseUrl": "https://github.com/tinfoilsh/confidential-glm5-1/releases/tag/v0.0.7",
+      "releaseDigest": "493df8f0df8875cce1da1c043938eef0b67334d3634dd880cae9757578c86fc6",
+      "releaseAttestationCount": 1,
+      "classification": "BINARY-PROVENANCE",
+      "measurement": {
+        "snp": "c0f85c799742a7907a7a93781eb91fcbb56040abff767b760671f93946fbc7cbf8cefd8144712d55e84e55650635ec87",
+        "tdx": {
+          "rtmr1": "4f7be53273f4ed3114e7578574f98eec533d5a18484e4e8a5feef1672b4a94e17646e7ab9e1f3c722faea496bac4dc8d",
+          "rtmr2": "8acb25172524dbc0f1b06dfae702801fdcd24fc3ed3e0c9bc0c27b8f4d40491324e07d7acc4088787bf886f7a3071641"
+        },
+        "hashes": {
+          "version": "v0.7.5",
+          "root": "5c1f3121fb34dbf8b55d35abbd328daaab589f1e2566bc6c99afdc231d705f59",
+          "initrd": "1bb89997c15dd48e67b79431079505262da64df0cad11c12f0994fac8d61bd97",
+          "kernel": "39cc3d97d415d99523754af0203f3951fa3bfdace5f3387926ccf2a7fd4fc8f0",
+          "raw": "684b5b68b43495f0a4aef1db8bbd79fcd9040852444329c560951455cd55b181",
+          "built_at": "2026-04-03T16:16:04Z"
+        }
+      },
+      "cvmVersion": "v0.7.5",
+      "containerImages": [
+        {
+          "image": "vllm/vllm-openai:glm51-cu130@sha256:bdc161fa9c43539656211239260c193f72c165aeaaba8d1383dba98cef99a86f",
+          "classification": "HASH-ONLY"
+        }
+      ],
+      "modelRefs": [
+        {
+          "ref": "zai-org/GLM-5.1-FP8@f396cf805182f4ca10fa675e1a99815b3ca384db",
+          "classification": "MODEL-HASH"
+        }
+      ]
+    },
+    {
+      "repo": "tinfoilsh/confidential-gpt-oss-120b",
+      "tag": "v0.0.22",
+      "releaseUrl": "https://github.com/tinfoilsh/confidential-gpt-oss-120b/releases/tag/v0.0.22",
+      "releaseDigest": "0a865c9d4410d9a32e9259d13a7abd8b5de4cb2585977aab196b3325b1ca8601",
+      "releaseAttestationCount": 1,
+      "classification": "BINARY-PROVENANCE",
+      "measurement": {
+        "snp": "def59672e45a61a9cbc9744e57d4bc8f6168496a7d40f205ebfd03a3ae201a559ada3a85bf6b0373a24f50de3b67bf38",
+        "tdx": {
+          "rtmr1": "727f33421ba6f289eb5e2d4e27391cc8b0fcda181879dba38d87ce789dfad11927380ff32d016b6b7bc8733179b10753",
+          "rtmr2": "69d9cb675fe32928dd881132cc3e17fb8bb41c475541ccc8b65ccac6b5dc4285ca93a2fe21635ef06dfd5f64c66dbc2e"
+        },
+        "hashes": {
+          "version": "v0.7.3",
+          "root": "027021244b67e32d69e295a03280e3813d176e94387fc9dcf0fc6c08c7126708",
+          "initrd": "df197345abdf6b8f88cfe3772bb5aeeb54097dbc67d753c5f4af25b8e4cabba7",
+          "kernel": "39cc3d97d415d99523754af0203f3951fa3bfdace5f3387926ccf2a7fd4fc8f0",
+          "raw": "ac5d4d50dda409dc1f65a840cf82dd36028640b51ea81d5a608e60c2fef0fd73",
+          "built_at": "2026-03-16T23:01:15Z"
+        }
+      },
+      "cvmVersion": "v0.7.3",
+      "containerImages": [
+        {
+          "image": "vllm/vllm-openai:v0.17.0-cu130@sha256:de06f6d78a2ce86856094a643d6c914d8bd7109f73c2e30f38097197b2f2bba1",
+          "classification": "HASH-ONLY"
+        }
+      ],
+      "modelRefs": [
+        {
+          "ref": "openai/gpt-oss-120b@b5c939de8f754692c1647ca79fbf85e8c1e70f8a",
+          "classification": "MODEL-HASH"
+        }
+      ]
+    },
+    {
+      "repo": "tinfoilsh/confidential-gpt-oss-safeguard-120b",
+      "tag": "v0.0.7",
+      "releaseUrl": "https://github.com/tinfoilsh/confidential-gpt-oss-safeguard-120b/releases/tag/v0.0.7",
+      "releaseDigest": "5fa0323dba52bfe4a05b69453f81bb0f3df5c6bd8989e17fcbf0be7b1eb9f450",
+      "releaseAttestationCount": 1,
+      "classification": "BINARY-PROVENANCE",
+      "measurement": {
+        "snp": "c4a0c661ac56e4d9cc92b9b811ede8349dbf5fc8ec9b718e99018afa3f8a76d6f840d7a5bde0b9181cb8b46c301de828",
+        "tdx": {
+          "rtmr1": "727f33421ba6f289eb5e2d4e27391cc8b0fcda181879dba38d87ce789dfad11927380ff32d016b6b7bc8733179b10753",
+          "rtmr2": "8341c824f1fed7b51dc2c5fe40b9e7234a6e0fd3e5ff7efd5dfdaca72799690f2f5adf8e4571060c5f8ca38c3c87c0ff"
+        },
+        "hashes": {
+          "version": "v0.7.3",
+          "root": "027021244b67e32d69e295a03280e3813d176e94387fc9dcf0fc6c08c7126708",
+          "initrd": "df197345abdf6b8f88cfe3772bb5aeeb54097dbc67d753c5f4af25b8e4cabba7",
+          "kernel": "39cc3d97d415d99523754af0203f3951fa3bfdace5f3387926ccf2a7fd4fc8f0",
+          "raw": "ac5d4d50dda409dc1f65a840cf82dd36028640b51ea81d5a608e60c2fef0fd73",
+          "built_at": "2026-03-16T23:01:15Z"
+        }
+      },
+      "cvmVersion": "v0.7.3",
+      "containerImages": [
+        {
+          "image": "vllm/vllm-openai:v0.17.1-cu130@sha256:bbeaaf81ba5704c30f6b87a5df5b10b930d97e916fc98c825d3ad30806e9638b",
+          "classification": "HASH-ONLY"
+        }
+      ],
+      "modelRefs": [
+        {
+          "ref": "openai/gpt-oss-safeguard-120b@3c7391182603991a904031244e7822488c67796d",
+          "classification": "MODEL-HASH"
+        }
+      ]
+    },
+    {
+      "repo": "tinfoilsh/confidential-kimi-k2-6-b200",
+      "tag": "v0.0.1",
+      "releaseUrl": "https://github.com/tinfoilsh/confidential-kimi-k2-6-b200/releases/tag/v0.0.1",
+      "releaseDigest": "6e3a3d5feae156e31aeb28563b2ba5a02dc76f962365f20430306614fdcebeca",
+      "releaseAttestationCount": 1,
+      "classification": "BINARY-PROVENANCE",
+      "measurement": {
+        "snp": "d8859e75daaf944e0ca3332feaeecb19896f78eb362dc0f4db34fa04d1da4904cd783f592e4ad7660232601623d47f12",
+        "tdx": {
+          "rtmr1": "46fb4643cc8fa10476074c01168d4c4757127452096d046b0147b26f1903a72dd53345404125a31c9cac26965bf6119c",
+          "rtmr2": "d869a109da88d1b18cefc0f46a4940d6ecfa20134c79ed3d75570cbdfb95271097b371a39cd0359c102040e5b1ae769f"
+        },
+        "hashes": {
+          "version": "v0.10.1",
+          "root": "d7ef7fceac2c062f4a370ab5cecbfcd150d0f7bbeaa5981f75e0b08b83850023",
+          "initrd": "71b851c82f1ac28baacbb3ed826a2621c022128d21ff9d8139907bf9e95164a6",
+          "kernel": "6f11cd68fc0d181bb4f9a72e2d0ec6a1c2a69a59f7b9bd6bf9538630d1102456",
+          "raw": "8aed8ddf116e8f0962e892cd8457dfc556d522e9e9f9d7a6bd168930d8b8775f",
+          "built_at": "2026-05-16T04:30:57Z"
+        }
+      },
+      "cvmVersion": "v0.10.1",
+      "containerImages": [
+        {
+          "image": "vllm/vllm-openai:v0.21.0-ubuntu2404@sha256:b0ac5da3f45ae5bfacb72e69b5bfd6150c22bd9cf4fc2c839400395106a5cc4e",
+          "classification": "HASH-ONLY"
+        }
+      ],
+      "modelRefs": [
+        {
+          "ref": "nvidia/Kimi-K2.6-NVFP4@2fd3a800dedd098b8327eb49e93ebc75f85da19f",
+          "classification": "MODEL-HASH"
+        },
+        {
+          "ref": "lightseekorg/kimi-k2.6-eagle3-mla@a62f2453f5eaa1614ddf67844ffe3321e41078d4",
+          "classification": "MODEL-HASH"
+        }
+      ]
+    },
+    {
+      "repo": "tinfoilsh/confidential-llama3-3-70b",
+      "tag": "v0.0.24",
+      "releaseUrl": "https://github.com/tinfoilsh/confidential-llama3-3-70b/releases/tag/v0.0.24",
+      "releaseDigest": "ef1c0e79c75616f9f71a4cc37554eb0cfac86fce3765664661b4fd428480d2fb",
+      "releaseAttestationCount": 1,
+      "classification": "BINARY-PROVENANCE",
+      "measurement": {
+        "snp": "04fd2268b533a91469a5c22f1f787497661c78cc1af32c85d26129bf2b51b43bb810c0ec5e22bfa3f27b9d7cf580d575",
+        "tdx": {
+          "rtmr1": "727f33421ba6f289eb5e2d4e27391cc8b0fcda181879dba38d87ce789dfad11927380ff32d016b6b7bc8733179b10753",
+          "rtmr2": "421b99e00861b6a172c69af83c716b36d9fb75d4f24f77d4282907d640ab588025e14d37826ad1fe15af0d9676fe0dba"
+        },
+        "hashes": {
+          "version": "v0.7.3",
+          "root": "027021244b67e32d69e295a03280e3813d176e94387fc9dcf0fc6c08c7126708",
+          "initrd": "df197345abdf6b8f88cfe3772bb5aeeb54097dbc67d753c5f4af25b8e4cabba7",
+          "kernel": "39cc3d97d415d99523754af0203f3951fa3bfdace5f3387926ccf2a7fd4fc8f0",
+          "raw": "ac5d4d50dda409dc1f65a840cf82dd36028640b51ea81d5a608e60c2fef0fd73",
+          "built_at": "2026-03-16T23:01:15Z"
+        }
+      },
+      "cvmVersion": "v0.7.3",
+      "containerImages": [
+        {
+          "image": "vllm/vllm-openai:v0.17.1-cu130@sha256:bbeaaf81ba5704c30f6b87a5df5b10b930d97e916fc98c825d3ad30806e9638b",
+          "classification": "HASH-ONLY"
+        }
+      ],
+      "modelRefs": [
+        {
+          "ref": "RedHatAI/Llama-3.3-70B-Instruct-FP8-dynamic@984c96b73bcf6a675945bac6382b9ed551e5d42b",
+          "classification": "MODEL-HASH"
+        }
+      ]
+    },
+    {
+      "repo": "tinfoilsh/confidential-nomic-embed-text",
+      "tag": "v0.0.27",
+      "releaseUrl": "https://github.com/tinfoilsh/confidential-nomic-embed-text/releases/tag/v0.0.27",
+      "releaseDigest": "73bbb95d9df238cf227d869044b12a37ef5cf38545d89458afda5d9119f13047",
+      "releaseAttestationCount": 1,
+      "classification": "BINARY-PROVENANCE",
+      "measurement": {
+        "snp": "4c86ee6cd084e9a60829581aba274af9dda200b10831edbcb9a362704637d4b40dc6293d73e589f0d15736078398fbd5",
+        "tdx": {
+          "rtmr1": "727f33421ba6f289eb5e2d4e27391cc8b0fcda181879dba38d87ce789dfad11927380ff32d016b6b7bc8733179b10753",
+          "rtmr2": "3cc9ddc86bf972b0d2bccd8d1e793822ffdfcbefe02fe9364f64aec01928a72701c334769c72c4020aa82f77c0165525"
+        },
+        "hashes": {
+          "version": "v0.7.3",
+          "root": "027021244b67e32d69e295a03280e3813d176e94387fc9dcf0fc6c08c7126708",
+          "initrd": "df197345abdf6b8f88cfe3772bb5aeeb54097dbc67d753c5f4af25b8e4cabba7",
+          "kernel": "39cc3d97d415d99523754af0203f3951fa3bfdace5f3387926ccf2a7fd4fc8f0",
+          "raw": "ac5d4d50dda409dc1f65a840cf82dd36028640b51ea81d5a608e60c2fef0fd73",
+          "built_at": "2026-03-16T23:01:15Z"
+        }
+      },
+      "cvmVersion": "v0.7.3",
+      "containerImages": [
+        {
+          "image": "ghcr.io/huggingface/text-embeddings-inference@sha256:346a39baecdd03c40e77184c66a4a9931ec2e25b8e57ff3766b79affdbd38673",
+          "classification": "HASH-ONLY"
+        }
+      ],
+      "modelRefs": []
+    },
+    {
+      "repo": "tinfoilsh/confidential-qwen3-vl-30b",
+      "tag": "v0.0.16",
+      "releaseUrl": "https://github.com/tinfoilsh/confidential-qwen3-vl-30b/releases/tag/v0.0.16",
+      "releaseDigest": "d1663f47e35b8c74ebae72c1ad7f58f0e54d57a92900dffb5ed0c87c9c2d9c36",
+      "releaseAttestationCount": 1,
+      "classification": "BINARY-PROVENANCE",
+      "measurement": {
+        "snp": "f5ef2a14ac2ab36138496243578b4dfaedb64cd7b497465c90dc8ed44f86f35d471e10ca8bec548826c483dc29fe610d",
+        "tdx": {
+          "rtmr1": "727f33421ba6f289eb5e2d4e27391cc8b0fcda181879dba38d87ce789dfad11927380ff32d016b6b7bc8733179b10753",
+          "rtmr2": "254a69750e4a2888eb5e57ed7dfa2b1f6f06a9714de2a77b5955807630ea672f70ef953fd74be8b44215c6f6fad48150"
+        },
+        "hashes": {
+          "version": "v0.7.3",
+          "root": "027021244b67e32d69e295a03280e3813d176e94387fc9dcf0fc6c08c7126708",
+          "initrd": "df197345abdf6b8f88cfe3772bb5aeeb54097dbc67d753c5f4af25b8e4cabba7",
+          "kernel": "39cc3d97d415d99523754af0203f3951fa3bfdace5f3387926ccf2a7fd4fc8f0",
+          "raw": "ac5d4d50dda409dc1f65a840cf82dd36028640b51ea81d5a608e60c2fef0fd73",
+          "built_at": "2026-03-16T23:01:15Z"
+        }
+      },
+      "cvmVersion": "v0.7.3",
+      "containerImages": [
+        {
+          "image": "vllm/vllm-openai:v0.17.1-cu130@sha256:bbeaaf81ba5704c30f6b87a5df5b10b930d97e916fc98c825d3ad30806e9638b",
+          "classification": "HASH-ONLY"
+        }
+      ],
+      "modelRefs": [
+        {
+          "ref": "Qwen/Qwen3-VL-30B-A3B-Instruct@4b184fbdab8886057d8d80c09f35bcfc65fe640e",
+          "classification": "MODEL-HASH"
+        }
+      ]
+    },
+    {
+      "repo": "tinfoilsh/confidential-realtime-models",
+      "tag": "v0.0.6",
+      "releaseUrl": "https://github.com/tinfoilsh/confidential-realtime-models/releases/tag/v0.0.6",
+      "releaseDigest": "ea9af0fe4c14c77b5e352e24d81ca63bdc2633a1faec00bdad040e52af8a3be1",
+      "releaseAttestationCount": 1,
+      "classification": "BINARY-PROVENANCE",
+      "measurement": {
+        "snp": "0fc47bfeb6e552c7cae5e59f856ec909899c3209997438d582f4309c6c04e881668cf97f681832eb8ae534072499a110",
+        "tdx": {
+          "rtmr1": "4f7be53273f4ed3114e7578574f98eec533d5a18484e4e8a5feef1672b4a94e17646e7ab9e1f3c722faea496bac4dc8d",
+          "rtmr2": "f5113eecd18822081a5cfc51d0e30705a0e719702457b030cf00d6e7f1219de44d4b2e455ba9fe3f1b87b24b9b1bc826"
+        },
+        "hashes": {
+          "version": "v0.7.5",
+          "root": "5c1f3121fb34dbf8b55d35abbd328daaab589f1e2566bc6c99afdc231d705f59",
+          "initrd": "1bb89997c15dd48e67b79431079505262da64df0cad11c12f0994fac8d61bd97",
+          "kernel": "39cc3d97d415d99523754af0203f3951fa3bfdace5f3387926ccf2a7fd4fc8f0",
+          "raw": "684b5b68b43495f0a4aef1db8bbd79fcd9040852444329c560951455cd55b181",
+          "built_at": "2026-04-03T16:16:04Z"
+        }
+      },
+      "cvmVersion": "v0.7.5",
+      "containerImages": [
+        {
+          "image": "ghcr.io/tinfoilsh/confidential-realtime-models@sha256:71638b83116b23f03fba43379b38bbba0f6df38172097866c50ba3fed9b799a1",
+          "classification": "BINARY-PROVENANCE"
+        },
+        {
+          "image": "ghcr.io/tinfoilsh/confidential-realtime-models-omni@sha256:eb39e3c55139b8cc5314fb2dbe32b8ed056eb7a14dd9162fbcff4d113284e35d",
+          "classification": "BINARY-PROVENANCE"
+        },
+        {
+          "image": "ghcr.io/tinfoilsh/confidential-realtime-models-omni@sha256:eb39e3c55139b8cc5314fb2dbe32b8ed056eb7a14dd9162fbcff4d113284e35d",
+          "classification": "BINARY-PROVENANCE"
+        },
+        {
+          "image": "ghcr.io/tinfoilsh/confidential-realtime-models-omni@sha256:eb39e3c55139b8cc5314fb2dbe32b8ed056eb7a14dd9162fbcff4d113284e35d",
+          "classification": "BINARY-PROVENANCE"
+        },
+        {
+          "image": "ghcr.io/tinfoilsh/confidential-realtime-models-omni@sha256:eb39e3c55139b8cc5314fb2dbe32b8ed056eb7a14dd9162fbcff4d113284e35d",
+          "classification": "BINARY-PROVENANCE"
+        }
+      ],
+      "modelRefs": [
+        {
+          "ref": "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice@0c0e3051f131929182e2c023b9537f8b1c68adfe",
+          "classification": "MODEL-HASH"
+        },
+        {
+          "ref": "mistralai/Voxtral-4B-TTS-2603@b81be46c3777f88621676791b512bb01dc1cb970",
+          "classification": "MODEL-HASH"
+        },
+        {
+          "ref": "mistralai/Voxtral-Mini-4B-Realtime-2602@2769294da9567371363522aac9bbcfdd19447add",
+          "classification": "MODEL-HASH"
+        },
+        {
+          "ref": "openai/whisper-large-v3-turbo@41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+          "classification": "MODEL-HASH"
+        }
+      ]
+    },
+    {
+      "repo": "tinfoilsh/confidential-voxtral-small-24b",
+      "tag": "v0.0.11",
+      "releaseUrl": "https://github.com/tinfoilsh/confidential-voxtral-small-24b/releases/tag/v0.0.11",
+      "releaseDigest": "837a61ca0cb0294a764f9eafb0a95eae4524030e2ecb276310ef7a02f18f5892",
+      "releaseAttestationCount": 1,
+      "classification": "BINARY-PROVENANCE",
+      "measurement": {
+        "snp": "d5584a904be958473644d184c8a5fe31e762213e3a24eaf259b681d2ed3ec3dead7370ba73a05b451cffcb1823793432",
+        "tdx": {
+          "rtmr1": "727f33421ba6f289eb5e2d4e27391cc8b0fcda181879dba38d87ce789dfad11927380ff32d016b6b7bc8733179b10753",
+          "rtmr2": "f5f753fb28996aa91414a75009a3a36afa5ae18fb4dcc0e85c41a8032c59fe2d259d1c8ea6018a464d8877b756e8e24f"
+        },
+        "hashes": {
+          "version": "v0.7.3",
+          "root": "027021244b67e32d69e295a03280e3813d176e94387fc9dcf0fc6c08c7126708",
+          "initrd": "df197345abdf6b8f88cfe3772bb5aeeb54097dbc67d753c5f4af25b8e4cabba7",
+          "kernel": "39cc3d97d415d99523754af0203f3951fa3bfdace5f3387926ccf2a7fd4fc8f0",
+          "raw": "ac5d4d50dda409dc1f65a840cf82dd36028640b51ea81d5a608e60c2fef0fd73",
+          "built_at": "2026-03-16T23:01:15Z"
+        }
+      },
+      "cvmVersion": "v0.7.3",
+      "containerImages": [
+        {
+          "image": "ghcr.io/tinfoilsh/vllm-openai-audio:v0.0.11@sha256:5c91900505727f91a32a533be9715123e703ea6ffcd7888239b0ebc2fd976d50",
+          "classification": "HASH-ONLY"
+        }
+      ],
+      "modelRefs": [
+        {
+          "ref": "mistralai/Voxtral-Small-24B-2507@da5b42409f279fdd92febee0511a6c32828569c1",
+          "classification": "MODEL-HASH"
+        }
+      ]
+    },
+    {
+      "repo": "tinfoilsh/confidential-websearch",
+      "tag": "v0.5.4",
+      "releaseUrl": "https://github.com/tinfoilsh/confidential-websearch/releases/tag/v0.5.4",
+      "releaseDigest": "c91b23a07644138a88b7bc8993c3c87dba4e627c3158cbfdb292147d1b2d800d",
+      "releaseAttestationCount": 1,
+      "classification": "BINARY-PROVENANCE",
+      "measurement": {
+        "snp": "13a05db0bbcf16dc60a0f574f1c85409f2761d20e964d55e480c9524bc3bb8606091c09081a3c9b4cbe708b4d0d57cb4",
+        "tdx": {
+          "rtmr1": "4f7be53273f4ed3114e7578574f98eec533d5a18484e4e8a5feef1672b4a94e17646e7ab9e1f3c722faea496bac4dc8d",
+          "rtmr2": "5ff431ce6d7c17113d2858eef7cbbe501d04b73773001bef9408381c7560a1a3f7d368d06a832ce885ce5bf6d1e3f2ac"
+        },
+        "hashes": {
+          "version": "v0.7.5",
+          "root": "5c1f3121fb34dbf8b55d35abbd328daaab589f1e2566bc6c99afdc231d705f59",
+          "initrd": "1bb89997c15dd48e67b79431079505262da64df0cad11c12f0994fac8d61bd97",
+          "kernel": "39cc3d97d415d99523754af0203f3951fa3bfdace5f3387926ccf2a7fd4fc8f0",
+          "raw": "684b5b68b43495f0a4aef1db8bbd79fcd9040852444329c560951455cd55b181",
+          "built_at": "2026-04-03T16:16:04Z"
+        }
+      },
+      "cvmVersion": "v0.7.5",
+      "containerImages": [
+        {
+          "image": "ghcr.io/tinfoilsh/confidential-websearch@sha256:ea987858d9073ad52b82f7706d8a78d3f2105c25a5938aeeea696c3783f5aa26",
+          "classification": "BINARY-PROVENANCE"
+        }
+      ],
+      "modelRefs": []
+    }
+  ],
+  "downstreamContainerImages": [
+    {
+      "image": "ghcr.io/huggingface/text-embeddings-inference@sha256:346a39baecdd03c40e77184c66a4a9931ec2e25b8e57ff3766b79affdbd38673",
+      "registry": "ghcr.io",
+      "repository": "huggingface/text-embeddings-inference",
+      "digest": "sha256:346a39baecdd03c40e77184c66a4a9931ec2e25b8e57ff3766b79affdbd38673",
+      "imageManifestDigest": "sha256:497269e1a74501b49b3ce13035a5994dff6d3db62367d437aaf83771004f712d",
+      "attestationManifestDigest": "sha256:ab1a082d4a26b70151bb2a2bad1c2e6b3b6f7bee54f3d69c6a84a81d6318d261",
+      "classification": "HASH-ONLY",
+      "reason": "no attached SLSA provenance found",
+      "slsa": null
+    },
+    {
+      "image": "ghcr.io/tinfoilsh/confidential-code-execution@sha256:a3215185a5f3470356d6b183290baa10a151968e732064463363edab3af9028b",
+      "registry": "ghcr.io",
+      "repository": "tinfoilsh/confidential-code-execution",
+      "digest": "sha256:a3215185a5f3470356d6b183290baa10a151968e732064463363edab3af9028b",
+      "imageManifestDigest": "sha256:630937532b08fa0e064a0d278d680bb66d4b0bd47d47263091dc99551a6897cf",
+      "attestationManifestDigest": "sha256:d1eeb16780da8bfd55ace1079dca14f63e4e0134125749c4592989e45c6941af",
+      "classification": "BINARY-PROVENANCE",
+      "reason": "attached SLSA provenance found",
+      "slsa": {
+        "subject": [
+          {
+            "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-code-execution@0.0.6?platform=linux%2Famd64",
+            "digest": {
+              "sha256": "630937532b08fa0e064a0d278d680bb66d4b0bd47d47263091dc99551a6897cf"
+            }
+          },
+          {
+            "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-code-execution@0.0?platform=linux%2Famd64",
+            "digest": {
+              "sha256": "630937532b08fa0e064a0d278d680bb66d4b0bd47d47263091dc99551a6897cf"
+            }
+          },
+          {
+            "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-code-execution@sha-c2358de?platform=linux%2Famd64",
+            "digest": {
+              "sha256": "630937532b08fa0e064a0d278d680bb66d4b0bd47d47263091dc99551a6897cf"
+            }
+          },
+          {
+            "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-code-execution@latest?platform=linux%2Famd64",
+            "digest": {
+              "sha256": "630937532b08fa0e064a0d278d680bb66d4b0bd47d47263091dc99551a6897cf"
+            }
+          }
+        ],
+        "buildType": "https://github.com/moby/buildkit/blob/master/docs/attestations/slsa-definitions.md",
+        "vcs": {
+          "localdir:context": ".",
+          "localdir:dockerfile": ".",
+          "revision": "c2358de0912a2d4a7627da7e69c15b2d7a76323b",
+          "source": "https://github.com/tinfoilsh/confidential-code-execution"
+        },
+        "builder": {
+          "id": "https://github.com/tinfoilsh/confidential-code-execution/actions/runs/25941875690"
+        },
+        "buildkitCompleteness": {
+          "request": true,
+          "resolvedDependencies": false
+        }
+      }
+    },
+    {
+      "image": "ghcr.io/tinfoilsh/confidential-doc-upload@sha256:f24f8f6df00c608e360be0ed73b14a0d3369015294972489caa18e4a1be2f4aa",
+      "registry": "ghcr.io",
+      "repository": "tinfoilsh/confidential-doc-upload",
+      "digest": "sha256:f24f8f6df00c608e360be0ed73b14a0d3369015294972489caa18e4a1be2f4aa",
+      "imageManifestDigest": "sha256:e96e56b2a771bc22132e0d5564f9ca97b330927a1fc368d3d43d086794d9a6d9",
+      "attestationManifestDigest": "sha256:1c301a9c1c2837fdb93746888efecc44d9527e855152b768dc492d56f30b390c",
+      "classification": "BINARY-PROVENANCE",
+      "reason": "attached SLSA provenance found",
+      "slsa": {
+        "subject": [
+          {
+            "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-doc-upload@0.0.31?platform=linux%2Famd64",
+            "digest": {
+              "sha256": "e96e56b2a771bc22132e0d5564f9ca97b330927a1fc368d3d43d086794d9a6d9"
+            }
+          },
+          {
+            "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-doc-upload@0.0?platform=linux%2Famd64",
+            "digest": {
+              "sha256": "e96e56b2a771bc22132e0d5564f9ca97b330927a1fc368d3d43d086794d9a6d9"
+            }
+          },
+          {
+            "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-doc-upload@sha-633b0c3?platform=linux%2Famd64",
+            "digest": {
+              "sha256": "e96e56b2a771bc22132e0d5564f9ca97b330927a1fc368d3d43d086794d9a6d9"
+            }
+          },
+          {
+            "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-doc-upload@latest?platform=linux%2Famd64",
+            "digest": {
+              "sha256": "e96e56b2a771bc22132e0d5564f9ca97b330927a1fc368d3d43d086794d9a6d9"
+            }
+          }
+        ],
+        "buildType": "https://github.com/moby/buildkit/blob/master/docs/attestations/slsa-definitions.md",
+        "vcs": {
+          "localdir:context": ".",
+          "localdir:dockerfile": ".",
+          "revision": "633b0c39a2b868ed925fd3aacf41c8916ac2e517",
+          "source": "https://github.com/tinfoilsh/confidential-doc-upload"
+        },
+        "builder": {
+          "id": "https://github.com/tinfoilsh/confidential-doc-upload/actions/runs/25512773083"
+        },
+        "buildkitCompleteness": {
+          "request": true,
+          "resolvedDependencies": false
+        }
+      }
+    },
+    {
+      "image": "ghcr.io/tinfoilsh/confidential-gemma4-31b@sha256:1e1938cc35ae260ab912db80798d95ebd16fdfb0a18b7708ded53e3bcf8fea76",
+      "registry": "ghcr.io",
+      "repository": "tinfoilsh/confidential-gemma4-31b",
+      "digest": "sha256:1e1938cc35ae260ab912db80798d95ebd16fdfb0a18b7708ded53e3bcf8fea76",
+      "imageManifestDigest": "sha256:e3e3cec89e73e40cb961444ca9fac7b73673b3447b830c19ad381a8df0d72546",
+      "attestationManifestDigest": "sha256:0404b2279ebe81d04526d2ca9c67eb23f8a6b642d76772c765bf6c0480a7dacd",
+      "classification": "BINARY-PROVENANCE",
+      "reason": "attached SLSA provenance found",
+      "slsa": {
+        "subject": [
+          {
+            "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-gemma4-31b@0.0.12?platform=linux%2Famd64",
+            "digest": {
+              "sha256": "e3e3cec89e73e40cb961444ca9fac7b73673b3447b830c19ad381a8df0d72546"
+            }
+          },
+          {
+            "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-gemma4-31b@0.0?platform=linux%2Famd64",
+            "digest": {
+              "sha256": "e3e3cec89e73e40cb961444ca9fac7b73673b3447b830c19ad381a8df0d72546"
+            }
+          },
+          {
+            "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-gemma4-31b@sha-5234742?platform=linux%2Famd64",
+            "digest": {
+              "sha256": "e3e3cec89e73e40cb961444ca9fac7b73673b3447b830c19ad381a8df0d72546"
+            }
+          },
+          {
+            "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-gemma4-31b@latest?platform=linux%2Famd64",
+            "digest": {
+              "sha256": "e3e3cec89e73e40cb961444ca9fac7b73673b3447b830c19ad381a8df0d72546"
+            }
+          }
+        ],
+        "buildType": "https://github.com/moby/buildkit/blob/master/docs/attestations/slsa-definitions.md",
+        "vcs": {
+          "localdir:context": ".",
+          "localdir:dockerfile": ".",
+          "revision": "52347427518ff5cc09021750c35bd5e1929ffa18",
+          "source": "https://github.com/tinfoilsh/confidential-gemma4-31b"
+        },
+        "builder": {
+          "id": "https://github.com/tinfoilsh/confidential-gemma4-31b/actions/runs/25523159261"
+        },
+        "buildkitCompleteness": {
+          "request": true,
+          "resolvedDependencies": false
+        }
+      }
+    },
+    {
+      "image": "ghcr.io/tinfoilsh/confidential-realtime-models-omni@sha256:eb39e3c55139b8cc5314fb2dbe32b8ed056eb7a14dd9162fbcff4d113284e35d",
+      "registry": "ghcr.io",
+      "repository": "tinfoilsh/confidential-realtime-models-omni",
+      "digest": "sha256:eb39e3c55139b8cc5314fb2dbe32b8ed056eb7a14dd9162fbcff4d113284e35d",
+      "imageManifestDigest": "sha256:ebf1ee74574501cc46b3eb95441eadee1a3f912315e538d560dd4a097f6a7523",
+      "attestationManifestDigest": "sha256:7e5134369b2ab4ccadddfc30755251eb34cc11e75fd82c51ab08deab4f7a521b",
+      "classification": "BINARY-PROVENANCE",
+      "reason": "attached SLSA provenance found",
+      "slsa": {
+        "subject": [
+          {
+            "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-realtime-models-omni@0.0.6?platform=linux%2Famd64",
+            "digest": {
+              "sha256": "ebf1ee74574501cc46b3eb95441eadee1a3f912315e538d560dd4a097f6a7523"
+            }
+          },
+          {
+            "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-realtime-models-omni@0.0?platform=linux%2Famd64",
+            "digest": {
+              "sha256": "ebf1ee74574501cc46b3eb95441eadee1a3f912315e538d560dd4a097f6a7523"
+            }
+          },
+          {
+            "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-realtime-models-omni@sha-2534593?platform=linux%2Famd64",
+            "digest": {
+              "sha256": "ebf1ee74574501cc46b3eb95441eadee1a3f912315e538d560dd4a097f6a7523"
+            }
+          },
+          {
+            "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-realtime-models-omni@latest?platform=linux%2Famd64",
+            "digest": {
+              "sha256": "ebf1ee74574501cc46b3eb95441eadee1a3f912315e538d560dd4a097f6a7523"
+            }
+          }
+        ],
+        "buildType": "https://github.com/moby/buildkit/blob/master/docs/attestations/slsa-definitions.md",
+        "vcs": {
+          "localdir:context": "omni",
+          "localdir:dockerfile": "omni",
+          "revision": "2534593e193e0695de1c12bc19dd90d1f84c3a92",
+          "source": "https://github.com/tinfoilsh/confidential-realtime-models"
+        },
+        "builder": {
+          "id": "https://github.com/tinfoilsh/confidential-realtime-models/actions/runs/25771024881"
+        },
+        "buildkitCompleteness": {
+          "request": true,
+          "resolvedDependencies": false
+        }
+      }
+    },
+    {
+      "image": "ghcr.io/tinfoilsh/confidential-realtime-models@sha256:71638b83116b23f03fba43379b38bbba0f6df38172097866c50ba3fed9b799a1",
+      "registry": "ghcr.io",
+      "repository": "tinfoilsh/confidential-realtime-models",
+      "digest": "sha256:71638b83116b23f03fba43379b38bbba0f6df38172097866c50ba3fed9b799a1",
+      "imageManifestDigest": "sha256:b05b81e42473520f5271f55f80e3b606a4067851835394153bdb163812b6b416",
+      "attestationManifestDigest": "sha256:aba990ba4de9f6ce34f380f3127e7d14753174dc0ca053a1341a6ec7fc8dcf2b",
+      "classification": "BINARY-PROVENANCE",
+      "reason": "attached SLSA provenance found",
+      "slsa": {
+        "subject": [
+          {
+            "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-realtime-models@0.0.6?platform=linux%2Famd64",
+            "digest": {
+              "sha256": "b05b81e42473520f5271f55f80e3b606a4067851835394153bdb163812b6b416"
+            }
+          },
+          {
+            "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-realtime-models@0.0?platform=linux%2Famd64",
+            "digest": {
+              "sha256": "b05b81e42473520f5271f55f80e3b606a4067851835394153bdb163812b6b416"
+            }
+          },
+          {
+            "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-realtime-models@sha-2534593?platform=linux%2Famd64",
+            "digest": {
+              "sha256": "b05b81e42473520f5271f55f80e3b606a4067851835394153bdb163812b6b416"
+            }
+          },
+          {
+            "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-realtime-models@latest?platform=linux%2Famd64",
+            "digest": {
+              "sha256": "b05b81e42473520f5271f55f80e3b606a4067851835394153bdb163812b6b416"
+            }
+          }
+        ],
+        "buildType": "https://github.com/moby/buildkit/blob/master/docs/attestations/slsa-definitions.md",
+        "vcs": {
+          "localdir:context": "router",
+          "localdir:dockerfile": "router",
+          "revision": "2534593e193e0695de1c12bc19dd90d1f84c3a92",
+          "source": "https://github.com/tinfoilsh/confidential-realtime-models"
+        },
+        "builder": {
+          "id": "https://github.com/tinfoilsh/confidential-realtime-models/actions/runs/25771024881"
+        },
+        "buildkitCompleteness": {
+          "request": true,
+          "resolvedDependencies": false
+        }
+      }
+    },
+    {
+      "image": "ghcr.io/tinfoilsh/confidential-websearch@sha256:ea987858d9073ad52b82f7706d8a78d3f2105c25a5938aeeea696c3783f5aa26",
+      "registry": "ghcr.io",
+      "repository": "tinfoilsh/confidential-websearch",
+      "digest": "sha256:ea987858d9073ad52b82f7706d8a78d3f2105c25a5938aeeea696c3783f5aa26",
+      "imageManifestDigest": "sha256:36a13c0b67b8c53bd71c43ea74cfa97f048857f2787aa9d3dfbccb3054b7f910",
+      "attestationManifestDigest": "sha256:055dd1327efdb70cf134a57bfd273f5d6c006da26f3efa74cef7bccedec082d8",
+      "classification": "BINARY-PROVENANCE",
+      "reason": "attached SLSA provenance found",
+      "slsa": {
+        "subject": [
+          {
+            "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-websearch@0.5.4?platform=linux%2Famd64",
+            "digest": {
+              "sha256": "36a13c0b67b8c53bd71c43ea74cfa97f048857f2787aa9d3dfbccb3054b7f910"
+            }
+          },
+          {
+            "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-websearch@0.5?platform=linux%2Famd64",
+            "digest": {
+              "sha256": "36a13c0b67b8c53bd71c43ea74cfa97f048857f2787aa9d3dfbccb3054b7f910"
+            }
+          },
+          {
+            "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-websearch@sha-5c1d31a?platform=linux%2Famd64",
+            "digest": {
+              "sha256": "36a13c0b67b8c53bd71c43ea74cfa97f048857f2787aa9d3dfbccb3054b7f910"
+            }
+          },
+          {
+            "name": "pkg:docker/ghcr.io/tinfoilsh/confidential-websearch@latest?platform=linux%2Famd64",
+            "digest": {
+              "sha256": "36a13c0b67b8c53bd71c43ea74cfa97f048857f2787aa9d3dfbccb3054b7f910"
+            }
+          }
+        ],
+        "buildType": "https://github.com/moby/buildkit/blob/master/docs/attestations/slsa-definitions.md",
+        "vcs": {
+          "localdir:context": ".",
+          "localdir:dockerfile": ".",
+          "revision": "5c1d31a01dbd13875ffcb78fc4d6463231d6491f",
+          "source": "https://github.com/tinfoilsh/confidential-websearch"
+        },
+        "builder": {
+          "id": "https://github.com/tinfoilsh/confidential-websearch/actions/runs/26348856916/attempts/1"
+        },
+        "buildkitCompleteness": {
+          "request": true,
+          "resolvedDependencies": false
+        }
+      }
+    },
+    {
+      "image": "ghcr.io/tinfoilsh/vllm-openai-audio:v0.0.11@sha256:5c91900505727f91a32a533be9715123e703ea6ffcd7888239b0ebc2fd976d50",
+      "registry": "ghcr.io",
+      "repository": "tinfoilsh/vllm-openai-audio",
+      "digest": "sha256:5c91900505727f91a32a533be9715123e703ea6ffcd7888239b0ebc2fd976d50",
+      "imageManifestDigest": "sha256:5c91900505727f91a32a533be9715123e703ea6ffcd7888239b0ebc2fd976d50",
+      "attestationManifestDigest": null,
+      "classification": "HASH-ONLY",
+      "reason": "no attached SLSA provenance found",
+      "slsa": null
+    },
+    {
+      "image": "vllm/vllm-openai:glm51-cu130@sha256:bdc161fa9c43539656211239260c193f72c165aeaaba8d1383dba98cef99a86f",
+      "registry": "vllm",
+      "classification": "HASH-ONLY",
+      "reason": "digest-pinned non-GHCR image; provenance not queried by this script"
+    },
+    {
+      "image": "vllm/vllm-openai:v0.17.0-cu130@sha256:de06f6d78a2ce86856094a643d6c914d8bd7109f73c2e30f38097197b2f2bba1",
+      "registry": "vllm",
+      "classification": "HASH-ONLY",
+      "reason": "digest-pinned non-GHCR image; provenance not queried by this script"
+    },
+    {
+      "image": "vllm/vllm-openai:v0.17.1-cu130@sha256:bbeaaf81ba5704c30f6b87a5df5b10b930d97e916fc98c825d3ad30806e9638b",
+      "registry": "vllm",
+      "classification": "HASH-ONLY",
+      "reason": "digest-pinned non-GHCR image; provenance not queried by this script"
+    },
+    {
+      "image": "vllm/vllm-openai:v0.20.0-cu130-ubuntu2404@sha256:aff65d7198dd284c37dd0a18a606544cc5e92bfb0d5eb608b77e8b8f1c6b8b0d",
+      "registry": "vllm",
+      "classification": "HASH-ONLY",
+      "reason": "digest-pinned non-GHCR image; provenance not queried by this script"
+    },
+    {
+      "image": "vllm/vllm-openai:v0.21.0-ubuntu2404@sha256:b0ac5da3f45ae5bfacb72e69b5bfd6150c22bd9cf4fc2c839400395106a5cc4e",
+      "registry": "vllm",
+      "classification": "HASH-ONLY",
+      "reason": "digest-pinned non-GHCR image; provenance not queried by this script"
+    }
+  ],
+  "downstreamModelRefs": [
+    {
+      "ref": "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice@0c0e3051f131929182e2c023b9537f8b1c68adfe",
+      "classification": "MODEL-HASH"
+    },
+    {
+      "ref": "Qwen/Qwen3-VL-30B-A3B-Instruct@4b184fbdab8886057d8d80c09f35bcfc65fe640e",
+      "classification": "MODEL-HASH"
+    },
+    {
+      "ref": "RedHatAI/Llama-3.3-70B-Instruct-FP8-dynamic@984c96b73bcf6a675945bac6382b9ed551e5d42b",
+      "classification": "MODEL-HASH"
+    },
+    {
+      "ref": "deepseek-ai/DeepSeek-V4-Pro@45040942eb0d1c4e29fa6b92a6195f110e9e7444",
+      "classification": "MODEL-HASH"
+    },
+    {
+      "ref": "google/gemma-4-31B-it@439edf5652646a0d1bd8b46bfdc1d3645761a445",
+      "classification": "MODEL-HASH"
+    },
+    {
+      "ref": "lightseekorg/kimi-k2.6-eagle3-mla@a62f2453f5eaa1614ddf67844ffe3321e41078d4",
+      "classification": "MODEL-HASH"
+    },
+    {
+      "ref": "mistralai/Voxtral-4B-TTS-2603@b81be46c3777f88621676791b512bb01dc1cb970",
+      "classification": "MODEL-HASH"
+    },
+    {
+      "ref": "mistralai/Voxtral-Mini-4B-Realtime-2602@2769294da9567371363522aac9bbcfdd19447add",
+      "classification": "MODEL-HASH"
+    },
+    {
+      "ref": "mistralai/Voxtral-Small-24B-2507@da5b42409f279fdd92febee0511a6c32828569c1",
+      "classification": "MODEL-HASH"
+    },
+    {
+      "ref": "nvidia/Kimi-K2.6-NVFP4@2fd3a800dedd098b8327eb49e93ebc75f85da19f",
+      "classification": "MODEL-HASH"
+    },
+    {
+      "ref": "openai/gpt-oss-120b@b5c939de8f754692c1647ca79fbf85e8c1e70f8a",
+      "classification": "MODEL-HASH"
+    },
+    {
+      "ref": "openai/gpt-oss-safeguard-120b@3c7391182603991a904031244e7822488c67796d",
+      "classification": "MODEL-HASH"
+    },
+    {
+      "ref": "openai/whisper-large-v3-turbo@41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "classification": "MODEL-HASH"
+    },
+    {
+      "ref": "zai-org/GLM-5.1-FP8@f396cf805182f4ca10fa675e1a99815b3ca384db",
+      "classification": "MODEL-HASH"
+    }
+  ]
+}

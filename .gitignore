@@ -1,5 +1,4 @@
 # Upstream repositories cloned for the audit.
-/Maple/
 /OpenSecret-SDK/
 /maple-proxy/
 /maple-proxy-startos/
@@ -12,12 +11,14 @@
 /.pgdata/
 /work/
 /tmp/
-providers/*/work/
-providers/*/node_modules/
+maple/work/
+ppq/work/
+ppq/node_modules/
 
 # Nix build result symlinks.
 /result*
-providers/*/result*
+maple/result*
+ppq/result*
 
 # Platform/editor noise.
 .DS_Store
