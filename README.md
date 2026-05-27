@@ -45,3 +45,13 @@ Expected hashes:
 2982295c13c5b92055b1f7593124cb7e6da93220d4fadd0c9496291e4044eca4  checked-binary EIF
 04ce61d813dad461cfc0d0fd004d790fac2954b02ef7be9fbf23242a9abc34ce  source-derived EIF
 ```
+
+This script demonstrates that the checked-binary EIF and the source-derived EIF are different reproducible artifacts. It is the main "I tried to prove the source maps to the live enclave, and it does not" reproduction.
+
+To check the original AWS Nitro C build formula directly, use Docker:
+
+```sh
+scripts/check-nitro-dockerfile.sh
+```
+
+That script runs the pinned checkout's `nitro-toolkit/enclave-base-image/Dockerfile`, the Amazon Linux/rustup/crates.io path for `libnsm.so` and `kmstool_enclave_cli`. During the audit it failed because Cargo 1.63 resolved newer unlocked crates it could not parse, after already resolving a mutable Amazon Linux/RPM toolchain that differed from the checked binary markers.

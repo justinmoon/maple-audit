@@ -91,8 +91,10 @@ nix_build "$OPENSECRET_DIR?submodules=1#eif-prod-source" "$source_out"
 
 echo
 echo "EIF image hashes:"
-hash_file "$checked_out/image.eif"
-hash_file "$source_out/image.eif"
+checked_hash="$(hash_file "$checked_out/image.eif" | awk '{print $1}')"
+source_hash="$(hash_file "$source_out/image.eif" | awk '{print $1}')"
+echo "$checked_hash  checked-binary EIF ($checked_out/image.eif)"
+echo "$source_hash  source-derived EIF ($source_out/image.eif)"
 
 cat <<'EOF'
 
