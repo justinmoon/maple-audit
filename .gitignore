@@ -11,6 +11,7 @@
 /.pgdata/
 /work/
 /tmp/
+worktrees/
 maple/work/
 ppq/work/
 ppq/node_modules/
