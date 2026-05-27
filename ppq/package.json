@@ -4,7 +4,9 @@
   "type": "module",
   "scripts": {
     "verify": "node scripts/verify-live-attestation.mjs",
-    "audit:tinfoil": "node scripts/audit-tinfoil-chain.mjs"
+    "audit:tinfoil": "node scripts/audit-tinfoil-chain.mjs",
+    "rebuild:router": "scripts/rebuild-router-container.sh",
+    "rebuild:cvm": "scripts/rebuild-cvmimage.sh"
   },
   "dependencies": {
     "@tinfoilsh/verifier": "1.1.3"

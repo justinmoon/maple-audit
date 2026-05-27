@@ -33,7 +33,11 @@ The router is not the whole inference stack. Its status endpoint reported 17 dow
 
 This does prove the live PPQ private entrypoint is a Tinfoil-attested router release, and it gives the current code/config identity for the downstream model enclaves.
 
-This does not prove a source-only rebuild of the full stack. At router release `v0.0.104`, the Dockerfile used mutable base tags (`golang:1.25-alpine`, `alpine:latest`); the registry provenance records the base image digests resolved during the build, but `buildkit_completeness.resolvedDependencies` is `false`. Downstream model repos are public Tinfoil deployment/config repos that pin container image digests and model weight refs; they are not, by themselves, source-only rebuilds of every container, CUDA library, vLLM image, or model weight artifact. For example, `tinfoilsh/confidential-gpt-oss-120b@v0.0.22` is a deployment config that pins `vllm/vllm-openai:v0.17.0-cu130@sha256:de06f6d78a2ce86856094a643d6c914d8bd7109f73c2e30f38097197b2f2bba1` and `openai/gpt-oss-120b@b5c939de8f754692c1647ca79fbf85e8c1e70f8a`, not a from-source rebuild recipe for those artifacts.
+This does not prove a source-only rebuild of the full stack. At router release `v0.0.104`, the Dockerfile used mutable base tags (`golang:1.25-alpine`, `alpine:latest`); the registry provenance records the base image digests resolved during the build, but `buildkit_completeness.resolvedDependencies` is `false`. I rebuilt the router executable byte-for-byte, but not the full container manifest.
+
+The Tinfoil CVM image is worse: `scripts/rebuild-cvmimage.sh` attempted the public `tinfoilsh/cvmimage@v0.7.5` recipe and the build no longer resolves from public package repositories. The failure is in live external NVIDIA/container apt repos whose current dependency metadata no longer matches the pinned versions in the recipe.
+
+Downstream model repos are public Tinfoil deployment/config repos that pin container image digests and model weight refs; they are not, by themselves, source-only rebuilds of every container, CUDA library, vLLM image, or model weight artifact. For example, `tinfoilsh/confidential-gpt-oss-120b@v0.0.22` is a deployment config that pins `vllm/vllm-openai:v0.17.0-cu130@sha256:de06f6d78a2ce86856094a643d6c914d8bd7109f73c2e30f38097197b2f2bba1` and `openai/gpt-oss-120b@b5c939de8f754692c1647ca79fbf85e8c1e70f8a`, not a from-source rebuild recipe for those artifacts.
 
 Bottom line: PPQ/Tinfoil gives a live cryptographic proof of the deployed enclave measurements and links them to public release/config provenance. I can identify what deployment artifacts are running today. I did not prove that every artifact can be rebuilt from source to the same hashes.
 
@@ -44,6 +48,7 @@ cd ppq
 npm ci
 npm run verify -- --out proofs/live-attestation-summary.json
 scripts/rebuild-router-container.sh
+scripts/rebuild-cvmimage.sh
 npm run audit:tinfoil -- --out proofs/tinfoil-chain-summary.json
 ```
 
@@ -57,6 +62,6 @@ The verification script:
 
 The router rebuild script uses Docker with a temporary Docker config so it does not read macOS keychain credentials.
 
-Current captured output: [`proofs/live-attestation-summary.json`](proofs/live-attestation-summary.json).
+Current captured outputs: [`proofs/live-attestation-summary.json`](proofs/live-attestation-summary.json), [`proofs/router-container-rebuild.json`](proofs/router-container-rebuild.json), [`proofs/cvmimage-rebuild.json`](proofs/cvmimage-rebuild.json).
 
 Tinfoil chain details: [`TINFOIL_CHAIN_AUDIT.md`](TINFOIL_CHAIN_AUDIT.md).

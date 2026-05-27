@@ -4,10 +4,16 @@ import { dirname, resolve } from "node:path";
 
 const DEFAULT_SUMMARY = "proofs/live-attestation-summary.json";
 const DEFAULT_ROUTER_REBUILD = "proofs/router-container-rebuild.json";
+const DEFAULT_CVM_REBUILD = "proofs/cvmimage-rebuild.json";
 const DEFAULT_OUT = "proofs/tinfoil-chain-summary.json";
 
 function parseArgs(argv) {
-  const args = { summary: DEFAULT_SUMMARY, routerRebuild: DEFAULT_ROUTER_REBUILD, out: DEFAULT_OUT };
+  const args = {
+    summary: DEFAULT_SUMMARY,
+    routerRebuild: DEFAULT_ROUTER_REBUILD,
+    cvmRebuild: DEFAULT_CVM_REBUILD,
+    out: DEFAULT_OUT,
+  };
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
     if (arg === "--summary") {
@@ -16,11 +22,14 @@ function parseArgs(argv) {
     } else if (arg === "--router-rebuild") {
       if (!argv[i + 1]) throw new Error("--router-rebuild requires a path");
       args.routerRebuild = argv[++i];
+    } else if (arg === "--cvm-rebuild") {
+      if (!argv[i + 1]) throw new Error("--cvm-rebuild requires a path");
+      args.cvmRebuild = argv[++i];
     } else if (arg === "--out") {
       if (!argv[i + 1]) throw new Error("--out requires a path");
       args.out = argv[++i];
     } else if (arg === "-h" || arg === "--help") {
-      console.log(`Usage: npm run audit:tinfoil -- [--summary ${DEFAULT_SUMMARY}] [--router-rebuild ${DEFAULT_ROUTER_REBUILD}] [--out ${DEFAULT_OUT}]
+      console.log(`Usage: npm run audit:tinfoil -- [--summary ${DEFAULT_SUMMARY}] [--router-rebuild ${DEFAULT_ROUTER_REBUILD}] [--cvm-rebuild ${DEFAULT_CVM_REBUILD}] [--out ${DEFAULT_OUT}]
 
 Reads the live PPQ router verification summary, then inventories the Tinfoil
 router release, CVM image release, and downstream model/tool enclave releases.
@@ -132,6 +141,21 @@ function modelRefClassification(ref) {
   if (!ref) return null;
   if (ref.includes("@")) return "MODEL-HASH";
   return "OPAQUE";
+}
+
+function compactCvmRebuild(path, rebuild) {
+  if (!rebuild) return null;
+  return {
+    proof: path,
+    classification: rebuild.classification ?? null,
+    failedStep: rebuild.failedStep ?? null,
+    exitCode: rebuild.exitCode ?? null,
+    goVersion: rebuild.goVersion ?? null,
+    mkosiVersion: rebuild.mkosiVersion ?? null,
+    local: rebuild.local ?? null,
+    matchedExpectedManifest: rebuild.matchedExpectedManifest ?? null,
+    notes: rebuild.notes ?? null,
+  };
 }
 
 function uniqueModelReleases(routerStatus) {
@@ -310,6 +334,7 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
   const liveSummary = JSON.parse(await readFile(args.summary, "utf8"));
   const routerRebuild = await readJsonIfExists(args.routerRebuild);
+  const cvmRebuild = await readJsonIfExists(args.cvmRebuild);
 
   const routerReleaseTag = liveSummary.sigstore?.releaseTag;
   const routerRelease = await githubRelease("tinfoilsh/confidential-model-router", routerReleaseTag);
@@ -319,6 +344,10 @@ async function main() {
   );
   const cvmVersion = liveSummary.deployment?.hashes?.version;
   const cvm = await auditCvmRelease(cvmVersion);
+  if (cvmRebuild) {
+    cvm.sourceRebuild = compactCvmRebuild(args.cvmRebuild, cvmRebuild);
+    cvm.classification = cvmRebuild.classification ?? cvm.classification;
+  }
 
   const modelEntries = uniqueModelReleases(liveSummary.routerStatus);
   const modelReleases = [];
@@ -364,6 +393,7 @@ async function main() {
       "MODEL-HASH": "model weights accepted by immutable repo/ref, not rebuildable as source",
       "OPAQUE": "no useful public identity found",
       "BROKEN": "claimed source recipe was tried and did not reproduce",
+      "BUILD-FORMULA-BROKEN": "public source recipe was tried but no longer resolves from public package repositories",
     },
     router: {
       repo: "tinfoilsh/confidential-model-router",

@@ -22,7 +22,7 @@ Classification meanings are recorded in [`proofs/tinfoil-chain-summary.json`](pr
 Current results:
 
 - Router release: `SOURCE-BINARY-REPRO`
-- CVM image release: `BINARY-PROVENANCE`
+- CVM image release: `BUILD-FORMULA-BROKEN`
 - Downstream Tinfoil model/tool release configs: 14 `BINARY-PROVENANCE`
 - Downstream container images: 6 `BINARY-PROVENANCE`, 7 `HASH-ONLY`
 - Model weight refs: 14 `MODEL-HASH`
@@ -60,7 +60,20 @@ The live attested hashes match that release manifest:
 - kernel: `39cc3d97d415d99523754af0203f3951fa3bfdace5f3387926ccf2a7fd4fc8f0`
 - raw disk: `684b5b68b43495f0a4aef1db8bbd79fcd9040852444329c560951455cd55b181`
 
-The CVM release has GitHub build attestations for the manifest and downloadable artifacts. I have not rebuilt this image. The public recipe uses `mkosi`, Ubuntu snapshots, pinned package versions for several packages, and external Docker/NVIDIA/Google apt repositories. This is the next Tinfoil-owned layer to attempt.
+The CVM release has GitHub build attestations for the manifest and downloadable artifacts. I attempted the source rebuild with [`scripts/rebuild-cvmimage.sh`](scripts/rebuild-cvmimage.sh), using:
+
+- source tag/commit: `v0.7.5` / `35d3e393d822ca0fa5eab4cc2edd651c8ded2d77`
+- `mkosi` commit: `54c625c380ef5500f17460981a3c67b109b6a847` (`mkosi 25.3`)
+- Go version available in the build environment: `go1.25.5`
+
+Result from [`proofs/cvmimage-rebuild.json`](proofs/cvmimage-rebuild.json): `BUILD-FORMULA-BROKEN`.
+
+The build reached `mkosi` and failed during apt dependency resolution. The public recipe pins some NVIDIA/container package versions, but uses live external NVIDIA/container repositories. Current public repo metadata wants:
+
+- `nvidia-container-toolkit-base=1.19.1-1` while the recipe pins `nvidia-container-toolkit=1.19.0-1`
+- NVIDIA `580.159.04` dependency packages while the recipe pins `nvidia-driver-580-open=580.126.20-1ubuntu1`
+
+So the public `v0.7.5` source formula no longer builds from public inputs. That is worse than a hash mismatch: we cannot currently produce a local CVM image hash to compare against the attested release hash.
 
 ## Downstream Releases
 
@@ -87,7 +100,8 @@ cd ppq
 npm ci
 npm run verify -- --out proofs/live-attestation-summary.json
 scripts/rebuild-router-container.sh
+scripts/rebuild-cvmimage.sh
 npm run audit:tinfoil -- --out proofs/tinfoil-chain-summary.json
 ```
 
-The router rebuild script uses a temporary Docker config and does not read macOS keychain credentials.
+The router rebuild script uses a temporary Docker config and does not read macOS keychain credentials. The CVM rebuild script must run on x86_64 Linux with passwordless `sudo`; on NixOS it enters a Nix shell and uses a private mount namespace to provide the Ubuntu-style host tools that `mkosi` expects.

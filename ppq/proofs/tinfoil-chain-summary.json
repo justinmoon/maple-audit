@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-05-27T15:45:50.760Z",
+  "checkedAt": "2026-05-27T16:26:12.950Z",
   "sourceSummary": "proofs/live-attestation-summary.json",
   "classifications": {
     "SOURCE-REPRO": "rebuilt from source and matched the live hash",
@@ -8,7 +8,8 @@
     "HASH-ONLY": "pinned digest/ref but no source rebuild/provenance verified here",
     "MODEL-HASH": "model weights accepted by immutable repo/ref, not rebuildable as source",
     "OPAQUE": "no useful public identity found",
-    "BROKEN": "claimed source recipe was tried and did not reproduce"
+    "BROKEN": "claimed source recipe was tried and did not reproduce",
+    "BUILD-FORMULA-BROKEN": "public source recipe was tried but no longer resolves from public package repositories"
   },
   "router": {
     "repo": "tinfoilsh/confidential-model-router",
@@ -57,7 +58,7 @@
       "url": "https://github.com/tinfoilsh/cvmimage/releases/download/v0.7.5/tinfoil-inference-v0.7.5-manifest.json"
     },
     "releaseAttestationCount": 1,
-    "classification": "BINARY-PROVENANCE",
+    "classification": "BUILD-FORMULA-BROKEN",
     "manifest": {
       "version": "v0.7.5",
       "root": "5c1f3121fb34dbf8b55d35abbd328daaab589f1e2566bc6c99afdc231d705f59",
@@ -65,6 +66,20 @@
       "kernel": "39cc3d97d415d99523754af0203f3951fa3bfdace5f3387926ccf2a7fd4fc8f0",
       "raw": "684b5b68b43495f0a4aef1db8bbd79fcd9040852444329c560951455cd55b181",
       "built_at": "2026-04-03T16:16:04Z"
+    },
+    "sourceRebuild": {
+      "proof": "proofs/cvmimage-rebuild.json",
+      "classification": "BUILD-FORMULA-BROKEN",
+      "failedStep": "mkosi",
+      "exitCode": 100,
+      "goVersion": "go version go1.25.5 linux/amd64",
+      "mkosiVersion": "mkosi 25.3",
+      "local": {
+        "tinfoilBootSha256": "faa4fd8d12f0f940af92cfcd772a7956e11ed75a13fc8298b26b371035e45e85",
+        "tinfoilShimSha256": "f77a572474835198aa938c3418c31af8aa0497cb5112b2f231ec5459ab04e0b6"
+      },
+      "matchedExpectedManifest": false,
+      "notes": "The public v0.7.5 source checkout and pinned mkosi commit were usable, but the mkosi package transaction did not resolve. The formula pins some NVIDIA/container package versions while using live external NVIDIA/container repositories, so the same source recipe no longer builds from public inputs."
     }
   },
   "downstreamModelReleases": [
