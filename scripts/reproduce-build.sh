@@ -15,9 +15,8 @@ usage() {
 Usage: scripts/reproduce-build.sh
 
 Clones the pinned OpenSecret repo, applies the source-build patch from this
-audit, then builds:
+audit, then builds the source-derived production EIF:
 
-  - eif-prod          checked-binary production EIF
   - eif-prod-source   source-derived EIF with rebuilt app-level binaries
 
 Environment:
@@ -83,25 +82,37 @@ git -C "$OPENSECRET_DIR" add \
   nix/aws-nitro-enclaves-nsm-api-Cargo.lock \
   nix/aws-nitro-enclaves-nsm-api-Cargo-lock.patch
 
-checked_out="$WORKDIR/result-prod-arm"
 source_out="$WORKDIR/result-prod-source-arm"
+expected_prod_hash="2982295c13c5b92055b1f7593124cb7e6da93220d4fadd0c9496291e4044eca4"
+expected_source_hash="04ce61d813dad461cfc0d0fd004d790fac2954b02ef7be9fbf23242a9abc34ce"
 
-nix_build "$OPENSECRET_DIR?submodules=1#eif-prod" "$checked_out"
 nix_build "$OPENSECRET_DIR?submodules=1#eif-prod-source" "$source_out"
 
 echo
-echo "EIF image hashes:"
-checked_hash="$(hash_file "$checked_out/image.eif" | awk '{print $1}')"
+echo "Source-derived EIF image hash:"
 source_hash="$(hash_file "$source_out/image.eif" | awk '{print $1}')"
-echo "$checked_hash  checked-binary EIF ($checked_out/image.eif)"
 echo "$source_hash  source-derived EIF ($source_out/image.eif)"
 
-cat <<'EOF'
+cat <<EOF
 
-Expected audit hashes:
-  checked-binary EIF: 2982295c13c5b92055b1f7593124cb7e6da93220d4fadd0c9496291e4044eca4
-  source-derived EIF: 04ce61d813dad461cfc0d0fd004d790fac2954b02ef7be9fbf23242a9abc34ce
+Expected production EIF hash:
+  $expected_prod_hash
 
-The source-derived EIF is intentionally expected not to match the checked
-production EIF. The mismatch is the audit finding.
+Expected source-derived EIF hash from this audit:
+  $expected_source_hash
 EOF
+
+if [[ "$source_hash" == "$expected_prod_hash" ]]; then
+  echo
+  echo "Unexpected result: source-derived EIF matched the production EIF hash."
+  exit 1
+fi
+
+if [[ "$source_hash" != "$expected_source_hash" ]]; then
+  echo
+  echo "Unexpected result: source-derived EIF did not match the audit hash."
+  exit 1
+fi
+
+echo
+echo "Result: source-derived EIF reproduced the audit hash and does not match production."

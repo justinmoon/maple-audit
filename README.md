@@ -28,15 +28,14 @@ Prerequisites:
 - Nix with flakes enabled.
 - An `aarch64-linux` builder. On macOS this usually means a configured remote Linux builder; set `EXTRA_NIX_ARGS="--max-jobs 0"` if you want to force remote builds.
 
-Run:
+Run the one-command source-derived build:
 
 ```sh
 scripts/reproduce-build.sh
 ```
 
-The script clones the pinned OpenSecret commit, initializes submodules, applies [`patches/opensecret-source-build.patch`](patches/opensecret-source-build.patch), and builds both:
+The script clones the pinned OpenSecret commit, initializes submodules, applies [`patches/opensecret-source-build.patch`](patches/opensecret-source-build.patch), and builds:
 
-- `eif-prod`: the checked-binary production EIF
 - `eif-prod-source`: the source-derived EIF used in this audit
 
 Expected hashes:
@@ -46,12 +45,6 @@ Expected hashes:
 04ce61d813dad461cfc0d0fd004d790fac2954b02ef7be9fbf23242a9abc34ce  source-derived EIF
 ```
 
-This script demonstrates that the checked-binary EIF and the source-derived EIF are different reproducible artifacts. It is the main "I tried to prove the source maps to the live enclave, and it does not" reproduction.
+This is the main "I tried to prove the source maps to the live enclave, and it does not" reproduction. The source-derived EIF reproducibly builds to the second hash, not the production hash.
 
-To check the original AWS Nitro C build formula directly, use Docker:
-
-```sh
-scripts/check-nitro-dockerfile.sh
-```
-
-That script runs the pinned checkout's `nitro-toolkit/enclave-base-image/Dockerfile`, the Amazon Linux/rustup/crates.io path for `libnsm.so` and `kmstool_enclave_cli`. During the audit it failed because Cargo 1.63 resolved newer unlocked crates it could not parse, after already resolving a mutable Amazon Linux/RPM toolchain that differed from the checked binary markers.
+What is missing to make the source build match production is not another local script; it is upstream build provenance for the AWS Nitro C binary chain: the exact Amazon Linux base digest, RPM repository/package snapshot, Cargo lockfile or vendored dependencies for `aws-nitro-enclaves-nsm-api`, and build metadata for the `/tmp/crt-builder` environment that produced the checked `libnsm.so` and `kmstool_enclave_cli`.
