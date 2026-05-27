@@ -20,3 +20,28 @@ The Nitro source refs appear broadly correct, but the build formula is unclear a
 Bottom line: the live enclave matches the checked-in production EIF, but the public source/build recipe is not sufficient to independently reproduce the AWS Nitro binary chain or the full source-derived EIF.
 
 See [`SOURCE_EIF_AUDIT.md`](SOURCE_EIF_AUDIT.md) for details.
+
+## Reproduce the build
+
+Prerequisites:
+
+- Nix with flakes enabled.
+- An `aarch64-linux` builder. On macOS this usually means a configured remote Linux builder; set `EXTRA_NIX_ARGS="--max-jobs 0"` if you want to force remote builds.
+
+Run:
+
+```sh
+scripts/reproduce-build.sh
+```
+
+The script clones the pinned OpenSecret commit, initializes submodules, applies [`patches/opensecret-source-build.patch`](patches/opensecret-source-build.patch), and builds both:
+
+- `eif-prod`: the checked-binary production EIF
+- `eif-prod-source`: the source-derived EIF used in this audit
+
+Expected hashes:
+
+```text
+2982295c13c5b92055b1f7593124cb7e6da93220d4fadd0c9496291e4044eca4  checked-binary EIF
+04ce61d813dad461cfc0d0fd004d790fac2954b02ef7be9fbf23242a9abc34ce  source-derived EIF
+```

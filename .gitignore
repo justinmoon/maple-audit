@@ -9,6 +9,7 @@
 # Local helper/build state.
 /attestation-check/
 /.pgdata/
+/work/
 
 # Nix build result symlinks.
 /result*
